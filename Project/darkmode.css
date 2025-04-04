@@ -1,0 +1,14 @@
+/* Light Mode (Default) */
+body {
+    background-color: #ffffff;
+    color: #000000;
+    /* Other styles */
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+    /* Other styles */
+}
+@import url('C:\Users\Mr-A\OneDrive\Desktop\SEM-4\html\codes\Project\darkmodeinventory.css');

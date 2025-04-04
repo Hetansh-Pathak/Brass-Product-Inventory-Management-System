@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventory Management</title>
+  <link rel="stylesheet" href="inventory1.css" />
+  <link rel="stylesheet" href="/darkmode.css" />
+</head>
+<body>
+  <header>
+    <h1>Inventory Management</h1>
+    <div class="top-search-bar">
+      <input type="text" id="searchInput" placeholder="Search Product or Raw Material..." />
+      <button onclick="searchInventory()">Search</button>
+    </div>
+    
+    <nav>
+      <ul>
+        <li><a href="/first_page/firstpage.html">Home</a></li>
+        <li><a href="#available-stock" class="active">Stock Management</a></li>
+        <li><a href="/Available_material/available_material.html">Available Material</a></li>
+        <li><a href="/inventory/IN-OUTward.html">IN/OUT</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Available Stock Table -->
+  <section id="available-stock">
+    <h2> Stock of Product </h2>
+    <table id="stockTable">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>HSN Code</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" value="Brass Rod"></td>
+          <td><input type="text" value="HSN1234"></td>
+          <td><input type="number" value="100"></td>
+          <td><input type="number" value="500"></td>
+          <td><input type="date"></td>
+          <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+        <tr>
+          <td><input type="text" value="Brass Sheet"></td>
+          <td><input type="text" value="HSN5678"></td>
+          <td><input type="number" value="50"></td>
+          <td><input type="number" value="300"></td>
+          <td><input type="date"></td>
+          <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <button onclick="addRow('stockTable')">Add New Product</button>
+  </section>
+
+  <!-- Raw Material Table -->
+  <section id="raw-material">
+    <h2>Raw Material</h2>
+    <table id="rawTable">
+      <thead>
+        <tr>
+          <th>Material Name</th>
+          <th>Supplier</th>
+          <th>Quantity</th>
+          <th>Cost</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" value="Copper"></td>
+          <td><input type="text" value="ABC Suppliers"></td>
+          <td><input type="number" value="200"></td>
+          <td><input type="number" value="1000"></td>
+          <td><input type="date"></td>
+          <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+        <tr>
+          <td><input type="text" value="Zinc"></td>
+          <td><input type="text" value="XYZ Traders"></td>
+          <td><input type="number" value="150"></td>
+          <td><input type="number" value="750"></td>
+          <td><input type="date"></td>
+          <td><button onclick="deleteRow(this)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <button onclick="addRow('rawTable')">Add New Material</button>
+  </section>
+  <script src="/inventory/inventory_js.js"></script>
+  <script>
+  // Delete Row
+  function deleteRow(button) {
+    const row = button.closest("tr");
+    row.remove();
+    saveTableData(); // Save after deletion
+  }
+
+  // Add New Row
+  function addRow(tableId) {
+    const table = document.getElementById(tableId).querySelector("tbody");
+    const newRow = document.createElement("tr");
+    const isRaw = tableId === 'rawTable';
+
+    newRow.innerHTML = isRaw
+      ? `<td><input type="text" value="New Material"></td>
+         <td><input type="text" value="Supplier"></td>
+         <td><input type="number" value="0"></td>
+         <td><input type="number" value="0"></td>
+         <td><input type="date"></td>
+         <td><button onclick="deleteRow(this)">Delete</button></td>`
+      : `<td><input type="text" value="New Product"></td>
+         <td><input type="text" value="HSN0000"></td>
+         <td><input type="number" value="0"></td>
+         <td><input type="number" value="0"></td>
+         <td><input type="date"></td>
+         <td><button onclick="deleteRow(this)">Delete</button></td>`;
+
+    table.appendChild(newRow);
+    saveTableData(); // Save after adding
+  }
+
+  // Save table data to localStorage
+  function saveTableData() {
+    const stockData = getTableData('stockTable');
+    const rawData = getTableData('rawTable');
+    localStorage.setItem('stockData', JSON.stringify(stockData));
+    localStorage.setItem('rawData', JSON.stringify(rawData));
+  }
+
+  function getTableData(tableId) {
+    const table = document.getElementById(tableId);
+    const rows = table.querySelectorAll('tbody tr');
+    const data = [];
+
+    rows.forEach(row => {
+      const inputs = row.querySelectorAll('input');
+      const rowData = Array.from(inputs).map(input => input.value);
+      data.push(rowData);
+    });
+
+    return data;
+  }
+
+  // Optional: Save on input changes
+  document.addEventListener('input', () => {
+    saveTableData();
+  });
+</script>
+
+</body>
+</html>

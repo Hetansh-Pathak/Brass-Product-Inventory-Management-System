@@ -1,0 +1,197 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f4f4f4;
+}
+
+body.dark-mode header {
+    background-color: #3a3a3a;
+    color: #ffffff;
+}
+
+body.dark-mode nav ul {
+    background: #2d2d2d;
+}
+
+body.dark-mode nav ul li a {
+    color: #ffffff;
+}
+
+body.dark-mode nav ul li a:hover, 
+body.dark-mode .active {
+    background-color: #555555;
+}
+
+body.dark-mode .billing-section {
+    background: #2d2d2d;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode th {
+    background: #3a3a3a;
+    color: #ffffff;
+}
+
+body.dark-mode tbody tr:hover {
+    background: #555555;
+}
+
+body.dark-mode button:first-of-type {
+    background: #4caf50;
+}
+
+body.dark-mode button:last-of-type {
+    background: #f44336;
+}
+
+/* Header */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    background: #34495e;
+    padding: 10px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+nav ul li a:hover, .active {
+    background-color: #f39c12;
+}
+
+/* Billing Section */
+.billing-section {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: #2c3e50;
+    color: white;
+}
+
+tbody tr:hover {
+    background: #f1c40f;
+    cursor: pointer;
+}
+button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:first-of-type {
+    background: #27ae60;
+    color: white;
+}
+
+.button2 {
+    background: #36302f;
+    color: white;
+}
+button:last-of-type{
+    background: #be4c37;
+    color: white;
+}
+.button2 {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.button2{
+    background-color: #555;
+}
+
+#darkModeToggle {
+    background-color: #333;
+    color: white;
+
+}
+
+#darkModeToggle:hover {
+    background-color: #555; 
+}
+
+
+.billing-action {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.billing-action:hover {
+    background-color: #45a049; 
+}
