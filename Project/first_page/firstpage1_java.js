@@ -72,3 +72,70 @@ function applyThemePreference() {
 
 // Apply the theme preference when the DOM content is fully loaded
 document.addEventListener('DOMContentLoaded', applyThemePreference);
+document.addEventListener("DOMContentLoaded", function () {
+    const statuses = document.querySelectorAll(".status");
+
+    statuses.forEach(status => {
+        status.addEventListener("click", function () {
+            if (this.classList.contains("active")) {
+                this.classList.remove("active");
+                this.classList.add("inactive");
+                this.textContent = "Inactive";
+            } else {
+                this.classList.remove("inactive");
+                this.classList.add("active");
+                this.textContent = "Active";
+            }
+        });
+    });
+});
+function addNewOrder() {
+    const table = document.querySelector("#orders table tbody");
+    
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+    <td contenteditable="true">#00X</td>
+    <td contenteditable="true">Customer Name</td>
+    <td contenteditable="true">Product Name</td>
+    <td contenteditable="true">0</td>
+    <td><span class="status active">Active</span></td>
+    <td><button onclick="deleteOrder(this)" class="delete-btn">Delete</button></td>
+`;
+
+    table.appendChild(newRow);
+    
+    // Add click toggle to new status
+    const status = newRow.querySelector(".status");
+    status.addEventListener("click", function () {
+        if (this.classList.contains("active")) {
+            this.classList.remove("active");
+            this.classList.add("inactive");
+            this.textContent = "Inactive";
+        } else {
+            this.classList.remove("inactive");
+            this.classList.add("active");
+            this.textContent = "Active";
+        }
+    });
+}
+function deleteOrder(button) {
+    const row = button.closest("tr");
+    row.remove();
+}
+
+  function showPopup(event) {
+    event.preventDefault();
+
+    const popup = document.getElementById("popupNotification");
+    popup.style.display = "block";
+
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 3000); // Hide after 3 seconds
+
+    // Clear form
+    document.getElementById("contactForm").reset();
+
+    return false;
+  }
+

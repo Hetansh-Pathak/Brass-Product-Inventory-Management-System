@@ -1,190 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raw Material Inventory</title>
-    <link rel="stylesheet" href="available-material.css">
-    <link rel="stylesheet" href="/darkmode.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raw Material Inventory</title>
+  <link rel="stylesheet" href="available-material.css" />
+  <link rel="stylesheet" href="/darkmode.css" />
+  <style>
+    /* Highlight matching row */
+    .highlight {
+      background-color: #ffff99 !important;
+    }
+
+    .search-bar {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .search-bar input {
+      padding: 8px;
+      width: 300px;
+      font-size: 16px;
+    }
+
+    .search-bar button {
+      padding: 8px 12px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Raw Material Inventory</h1>
-        <nav>
-            <ul>
-                <li><a href="/first_page/firstpage.html">Home</a></li>
-                <li><a href="/inventory/inventory.html">Inventory</a></li>
-                <li><a href="#" class="active">Available-Material</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="raw-material">
-        <h2>Available Products</h2>
-        <table id="product-table">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Supplier</th>
-                    <th>Quantity</th>
-                    <th>Cost</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td contenteditable="true">Copper Sheet</td>
-                    <td contenteditable="true">ABC Suppliers</td>
-                    <td contenteditable="true">150 kg</td>
-                    <td contenteditable="true">$1200</td>
-                    <td><button onclick="deleteRow(this)">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">Zinc Coil</td>
-                    <td contenteditable="true">XYZ Traders</td>
-                    <td contenteditable="true">180 kg</td>
-                    <td contenteditable="true">$950</td>
-                    <td><button onclick="deleteRow(this)">Delete</button></td>
-                </tr>
-            </tbody>
-        </table>
-        <button onclick="addRow('product-table')">Add New Product</button>
-    </section>
+  <header>
+    <h1>Raw Material Inventory</h1>
+    <nav>
+      <ul>
+        <li><a href="/inventory/inventory.html">Inventory</a></li>
+        <li><a href="#" class="active">Available-Raw-Material</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section class="raw-material">
-        
-        <h2>Available Raw Materials</h2>
-        <table id="raw-material-table">
-            <thead>
-                <tr>
-                    <th>Material Name</th>
-                    <th>Supplier</th>
-                    <th>Quantity</th>
-                    <th>Cost</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td contenteditable="true">Copper</td>
-                    <td contenteditable="true">ABC Suppliers</td>
-                    <td contenteditable="true">200 kg</td>
-                    <td contenteditable="true">$1000</td>
-                    <td><button onclick="deleteRow(this)">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">Zinc</td>
-                    <td contenteditable="true">XYZ Traders</td>
-                    <td contenteditable="true">150 kg</td>
-                    <td contenteditable="true">$750</td>
-                    <td><button onclick="deleteRow(this)">Delete</button></td>
-                </tr>
-                <tr>
-                    <td contenteditable="true">Nickel</td>
-                    <td contenteditable="true">PQR Metals</td>
-                    <td contenteditable="true">100 kg</td>
-                    <td contenteditable="true">$500</td>
-                    <td><button onclick="deleteRow(this)">Delete</button></td>
-                </tr>
-            </tbody>
-        </table>
-        <button onclick="addRow('raw-material-table')">Add New Material</button>
-    </section>
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search Raw Material..." />
+    <button onclick="searchMaterial()">Search</button>
+  </div>
 
-   
-    <script>
-        function deleteRow(button) {
-            const row = button.closest("tr");
-            row.remove();
-        }
+  <section class="raw-material">
+    <h2>Add New Raw Material</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Material Name</th>
+          <th>Supplier</th>
+          <th>Quantity</th>
+          <th>Cost</th>
+          <th>Date</th>
+          <th>HSN Code</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" id="matName" placeholder="Material Name" /></td>
+          <td><input type="text" id="matSupplier" placeholder="Supplier" /></td>
+          <td><input type="text" id="matQty" placeholder="Quantity (e.g. 100 kg)" /></td>
+          <td><input type="text" id="matCost" placeholder="Cost (e.g. $800)" /></td>
+          <td><input type="date" id="matDate" /></td>
+          <td><input type="text" id="matHSN" placeholder="HSN Code" /></td>
+          <td><button onclick="addMaterialRow()">Add</button></td>
+        </tr>
+      </tbody>
+    </table>
 
-        function addRow(tableId) {
-            const table = document.getElementById(tableId).querySelector("tbody");
-            const newRow = document.createElement("tr");
-            newRow.innerHTML = `
-                <td contenteditable="true">New</td>
-                <td contenteditable="true">Supplier</td>
-                <td contenteditable="true">0 kg</td>
-                <td contenteditable="true">$0</td>
-                <td><button onclick="deleteRow(this)">Delete</button></td>
-            `;
-            table.appendChild(newRow);
-        }
-    </script>
+    <h3>Available Raw Materials</h3>
+    <table id="raw-material-table">
+      <thead>
+        <tr>
+          <th>Material Name</th>
+          <th>Supplier</th>
+          <th>Quantity</th>
+          <th>Cost</th>
+          <th>Date</th>
+          <th>HSN Code</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- New rows go here -->
+      </tbody>
+    </table>
+  </section>
 
-    <script src="/first_page/firstpage1_java.js"></script>
-    <script>
-        function deleteRow(button) {
-          const row = button.closest("tr");
-          row.remove();
-          saveCurrentData(); // Optional if user can edit here
+  <script>
+    function addMaterialRow() {
+      const name = document.getElementById("matName").value.trim();
+      const supplier = document.getElementById("matSupplier").value.trim();
+      const qty = document.getElementById("matQty").value.trim();
+      const cost = document.getElementById("matCost").value.trim();
+      const date = document.getElementById("matDate").value;
+      const hsn = document.getElementById("matHSN").value.trim();
+
+      if (!name || !supplier || !qty || !cost || !date || !hsn) {
+        alert("Please fill all material fields.");
+        return;
+      }
+
+      const table = document.getElementById("raw-material-table").querySelector("tbody");
+      const newRow = document.createElement("tr");
+
+      newRow.innerHTML = `
+        <td><input type="text" value="${name}" readonly></td>
+        <td><input type="text" value="${supplier}" readonly></td>
+        <td><input type="text" value="${qty}" readonly></td>
+        <td><input type="text" value="${cost}" readonly></td>
+        <td><input type="date" value="${date}" readonly></td>
+        <td><input type="text" value="${hsn}" readonly></td>
+        <td><button onclick="deleteRow(this)">Delete</button></td>
+      `;
+      table.appendChild(newRow);
+
+      // Clear input fields
+      document.getElementById("matName").value = "";
+      document.getElementById("matSupplier").value = "";
+      document.getElementById("matQty").value = "";
+      document.getElementById("matCost").value = "";
+      document.getElementById("matDate").value = "";
+      document.getElementById("matHSN").value = "";
+    }
+
+    function deleteRow(button) {
+      const row = button.closest("tr");
+      row.remove();
+    }
+
+    function searchMaterial() {
+      const input = document.getElementById("searchInput").value.toLowerCase().trim();
+      const rows = document.querySelectorAll("#raw-material-table tbody tr");
+      let found = false;
+
+      rows.forEach(row => {
+        row.classList.remove("highlight"); // Clear any previous highlights
+        const cells = row.querySelectorAll("td input");
+        for (let cell of cells) {
+          if (cell.value.toLowerCase().includes(input)) {
+            row.classList.add("highlight");
+            found = true;
+            break;
+          }
         }
-      
-        function addRow(tableId) {
-          const table = document.getElementById(tableId).querySelector("tbody");
-          const newRow = document.createElement("tr");
-      
-          newRow.innerHTML = `
-            <td contenteditable="true">New</td>
-            <td contenteditable="true">Supplier</td>
-            <td contenteditable="true">0 kg</td>
-            <td contenteditable="true">$0</td>
-            <td><button onclick="deleteRow(this)">Delete</button></td>
-          `;
-      
-          table.appendChild(newRow);
-        }
-      
-        // Load data from localStorage
-        function loadDataFromStorage() {
-          const rawData = JSON.parse(localStorage.getItem('rawData')) || [];
-          const stockData = JSON.parse(localStorage.getItem('stockData')) || [];
-      
-          renderTable('raw-material-table', rawData);
-          renderTable('product-table', stockData); // Showing stock data as available products
-        }
-      
-        function renderTable(tableId, data) {
-          const table = document.getElementById(tableId).querySelector("tbody");
-          table.innerHTML = ''; // Clear table
-      
-          data.forEach(rowData => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-              <td contenteditable="true">${rowData[0]}</td>
-              <td contenteditable="true">${rowData[1]}</td>
-              <td contenteditable="true">${rowData[2]}</td>
-              <td contenteditable="true">${rowData[3]}</td>
-              <td><button onclick="deleteRow(this)">Delete</button></td>
-            `;
-            table.appendChild(tr);
-          });
-        }
-      
-        // Optional if users can edit here too
-        function saveCurrentData() {
-          const table1 = getCurrentTableData('raw-material-table');
-          const table2 = getCurrentTableData('product-table');
-          localStorage.setItem('rawData', JSON.stringify(table1));
-          localStorage.setItem('stockData', JSON.stringify(table2));
-        }
-      
-        function getCurrentTableData(tableId) {
-          const table = document.getElementById(tableId);
-          const rows = table.querySelectorAll('tbody tr');
-          const data = [];
-      
-          rows.forEach(row => {
-            const cells = row.querySelectorAll('td[contenteditable="true"]');
-            const rowData = Array.from(cells).map(cell => cell.textContent.trim());
-            data.push(rowData);
-          });
-      
-          return data;
-        }
-      
-        window.onload = loadDataFromStorage;
-      </script>
-      
+      });
+
+      if (!found && input !== "") {
+        alert("No matching raw material found.");
+      }
+    }
+  </script>
+
 </body>
 </html>
