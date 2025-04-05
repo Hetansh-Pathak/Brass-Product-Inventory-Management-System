@@ -23,45 +23,7 @@
             <a href="/billing/billing.html" class="btn secondary">Go to Billing</a>
         </div>
     </section>
-            <section id="orders">
-                <h2>Order Details</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Customer Name</th>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Status</th>
-                            <th>Actions</th> 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#001</td>
-                            <td>John Doe</td>
-                            <td>Brass Rod</td>
-                            <td>20</td>
-                            <td><span class="status active">Active</span></td>
-                            <td><button onclick="deleteOrder(this)" class="delete-btn">Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>#002</td>
-                            <td>Jane Smith</td>
-                            <td>Brass Sheet</td>
-                            <td>10</td>
-                            <td><span class="status inactive">Inactive</span></td>
-                            <td><button onclick="deleteOrder(this)" class="delete-btn">Delete</button></td>
-                        </tr>
-                    </tbody>
-                    <button onclick="addNewOrder()" class="order-btn">Add New Order</button>
-
-                </table>
-            </section>
-            
-        </table>
-    </section>
-    
+ 
     <section class="products">
         <h2>Our Brass Products</h2>
         <div class="product-list">
@@ -106,18 +68,15 @@
     <section class="contact">
         <h2>Get in Touch</h2>
         <p>Have any questions? Reach out to us for more details.</p>
-        <form id="contactForm" onsubmit="return showPopup(event)">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="message" placeholder="Your Message" required></textarea>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
             <button class="send-button">Send Message</button>
+            
         </form>
-        
     </section>
-    <div id="popupNotification" class="popup">
-        Thank you! Your message has been sent.
-      </div>
-      
+
     <footer>
         <p>&copy; 2025 Brass Industries. All Rights Reserved.</p>
     </footer>

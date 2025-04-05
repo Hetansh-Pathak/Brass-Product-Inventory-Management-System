@@ -5,31 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/inventory/inventory1.css">
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2rem;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        input[type="date"], input[type="number"], input[type="text"] {
-            width: 100%;
-            padding: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            padding: 6px 10px;
-            margin-top: 5px;
-            cursor: pointer;
-        }
-        h2 {
-            margin-top: 2rem;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -37,116 +12,84 @@
         <nav>
             <ul>
                 <li><a href="/first_page/firstpage.html">Home</a></li>
-                <li><a href="#available-stock" class="active">Managing-Stock</a></li>
-                <li><a href="/Available_material/available_material.html">Available-Material</a></li>
+                <li><a href="#available-stock" class="active">Available Stock</a></li>
+                <li><a href="/raw_material/raw_material.html">Raw Material</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="Inward">
         <h2>Inward</h2>
-        <table id="inwardTable">
+        <table>
             <thead>
                 <tr>
                     <th>Product Name</th>
                     <th>HSN Code</th>
-                    <th>From</th>
+                    <th>From
+                    </th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody contenteditable="true">
                 <tr>
-                    <td><input type="text" value="Brass Rod"></td>
-                    <td><input type="text" value="HSN1234"></td>
-                    <td><input type="text" value="sender-details"></td>
-                    <td><input type="number" value="100"></td>
-                    <td><input type="number" value="500"></td>
-                    <td><input type="date"></td>
+                    <td>Brass Rod</td>
+                    <td>HSN1234</td>
+                    <td>sender-details</td>
+                    <td>100</td>
+                    <td>$500</td>
+                    <td> DD\MM\YYYY</td>
                     <td><button onclick="deleteRow(this)">Delete</button></td>
                 </tr>
                 <tr>
-                    <td><input type="text" value="Brass Sheet"></td>
-                    <td><input type="text" value="HSN5678"></td>
-                    <td><input type="text" value="sender-details"></td>
-                    <td><input type="number" value="50"></td>
-                    <td><input type="number" value="300"></td>
-                    <td><input type="date"></td>
+                    <td>Brass Sheet</td>
+                    <td>HSN5678</td>
+                    <td>sender-details</td>
+                    <td>50</td>
+                    <td>$300</td>
+                    <td>DD\MM\YYYY</td>
                     <td><button onclick="deleteRow(this)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
-        <button onclick="addRow('inwardTable')">Add New Product</button>
+        <button onclick="addRow()">Add New Product</button>
     </section>
 
     <section id="Outward">
         <h2>Outward</h2>
-        <table id="outwardTable">
+        <table>
             <thead>
                 <tr>
                     <th>Material Name</th>
-                    <th>Receiver</th>
+                    <th>receiver</th>
                     <th>Quantity</th>
                     <th>Cost</th>
                     <th>Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody contenteditable="true">
                 <tr>
-                    <td><input type="text" value="Copper"></td>
-                    <td><input type="text" value="receiver-details"></td>
-                    <td><input type="number" value="200"></td>
-                    <td><input type="number" value="1000"></td>
-                    <td><input type="date"></td>
+                    <td>Copper</td>
+                    <td>receiver-details</td>
+                    <td>200 kg</td>
+                    <td>$1000</td>
+                    <td>dd\mm\yyyy</td>
                     <td><button onclick="deleteRow(this)">Delete</button></td>
                 </tr>
                 <tr>
-                    <td><input type="text" value="Zinc"></td>
-                    <td><input type="text" value="receiver-details"></td>
-                    <td><input type="number" value="150"></td>
-                    <td><input type="number" value="750"></td>
-                    <td><input type="date"></td>
+                    <td>Zinc</td>
+                    <td>receiver-details</td>
+                    <td>150 kg</td>
+                    <td>$750</td>
+                    <td>dd\mm\yyyy</td>
                     <td><button onclick="deleteRow(this)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
-        <button onclick="addRow('outwardTable')">Add New Material</button>
+        <button onclick="addRow()">Add New Material</button>
     </section>
-
-    <script>
-        function deleteRow(btn) {
-            const row = btn.closest("tr");
-            row.remove();
-        }
-
-        function addRow(tableId) {
-            const table = document.getElementById(tableId).getElementsByTagName('tbody')[0];
-            const newRow = table.insertRow();
-
-            if (tableId === 'inwardTable') {
-                newRow.innerHTML = `
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="date"></td>
-                    <td><button onclick="deleteRow(this)">Delete</button></td>
-                `;
-            } else if (tableId === 'outwardTable') {
-                newRow.innerHTML = `
-                    <td><input type="text"></td>
-                    <td><input type="text"></td>
-                    <td><input type="number"></td>
-                    <td><input type="number"></td>
-                    <td><input type="date"></td>
-                    <td><button onclick="deleteRow(this)">Delete</button></td>
-                `;
-            }
-        }
-    </script>
 </body>
 </html>

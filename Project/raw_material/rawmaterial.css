@@ -7,10 +7,10 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-.h1 {
+
+body {
     background-color: #f4f4f4;
     color: #333;
-    text-align: center;
 }
 
 /* Header */
@@ -25,8 +25,8 @@ nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
-    padding: 10px;
     background: #34495e;
+    padding: 10px;
 }
 
 nav ul li {
@@ -39,13 +39,15 @@ nav ul li a {
     font-size: 18px;
     padding: 10px 15px;
     transition: 0.3s;
-}
-nav ul li a:hover, .active {
-    background-color: #f39c12;
     border-radius: 5px;
 }
-/* Sections */
-section {
+
+nav ul li a:hover, .active {
+    background-color: #f39c12;
+}
+
+/* Raw Material Section */
+.raw-material {
     text-align: center;
     padding: 40px;
     background: white;
@@ -54,11 +56,13 @@ section {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 h2 {
-    margin-bottom: 20px;
     font-size: 28px;
+    margin-bottom: 20px;
 }
-/* Tables */
+
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -70,7 +74,7 @@ table, th, td {
 }
 
 th, td {
-    padding: 10px;
+    padding: 12px;
     text-align: center;
 }
 
@@ -83,27 +87,4 @@ tbody tr:hover {
     background: #f1c40f;
     cursor: pointer;
 }
-
-/* Buttons */
-button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-button:first-of-type {
-    background: #27ae60;
-    color: white;
-}
-
-button:last-of-type {
-    background: #e74c3c;
-    color: white;
-}
+/* First.css*/
