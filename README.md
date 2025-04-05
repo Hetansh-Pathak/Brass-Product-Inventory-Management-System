@@ -11,4 +11,4 @@ It has mainly 2 Modules.
 
   -> Billing : 
         This module will allow user to Generate Bills.
-        User can Download recoreds in many type type such as PDF, CSV, Excel, ETC.
+        User can Download records in many type such as PDF, CSV, Excel etc.
