@@ -113,7 +113,7 @@
           <th>HSN Code</th>
           <th>Receiver</th>
           <th>Quantity</th>
-          <th>price</th>
+          <th>Cost</th>
           <th>Date</th>
           <th>Material</th>
           <th>Actions</th>
@@ -164,6 +164,7 @@
         `;
       } else if (tableId === 'outwardTable') {
         newRow.innerHTML = `
+          <td><input type="text"></td>
           <td><input type="text"></td>
           <td><input type="text"></td>
           <td><input type="number"></td>
