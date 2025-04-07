@@ -221,7 +221,7 @@ button:last-of-type {
     <h1>Raw Material Inventory</h1>
     <nav>
       <ul>
-        <li><a href="/inventory/inventory.html">Inventory</a></li>
+        <li><a href="../inventory/inventory.html">Inventory</a></li>
         <li><a href="#" class="active">Available-Raw-Material</a></li>
       </ul>
     </nav>
@@ -254,7 +254,7 @@ button:last-of-type {
           <td><input type="text" id="matCost" placeholder="Cost (e.g. $800)" /></td>
           <td><input type="date" id="matDate" /></td>
           <td><input type="text" id="matHSN" placeholder="HSN Code" /></td>
-          <td><button onclick="addMaterialRow()">Add</button></td>
+          <td><button onclick="addRawMaterial()">Add</button></td>
         </tr>
       </tbody>
     </table>
@@ -272,43 +272,51 @@ button:last-of-type {
           <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="rawMaterialBody">
         <!-- New rows go here -->
       </tbody>
     </table>
   </section>
 
   <script>
-    function addMaterialRow() {
+    function addRawMaterial() {
+      // Get values from form fields (using the IDs in your HTML)
       const name = document.getElementById("matName").value.trim();
       const supplier = document.getElementById("matSupplier").value.trim();
-      const qty = document.getElementById("matQty").value.trim();
-      const cost = document.getElementById("matCost").value.trim();
+      const qty = document.getElementById("matQty").value;
+      const cost = document.getElementById("matCost").value;
       const date = document.getElementById("matDate").value;
       const hsn = document.getElementById("matHSN").value.trim();
-
+  
       if (!name || !supplier || !qty || !cost || !date || !hsn) {
-        alert("Please fill all material fields.");
+        alert("Please fill all fields.");
         return;
       }
-
-      const table = document.getElementById("raw-material-table").querySelector("tbody");
-      const newRow = document.createElement("tr");
-
-      newRow.innerHTML = `
-        <td><input type="text" value="${name}" readonly></td>
-        <td><input type="text" value="${supplier}" readonly></td>
-        <td><input type="text" value="${qty}" readonly></td>
-        <td><input type="text" value="${cost}" readonly></td>
-        <td><input type="date" value="${date}" readonly></td>
-        <td><input type="text" value="${hsn}" readonly></td>
-        <td>
-          <button onclick="editRow(this)">Update</button>
-          <button onclick="deleteRow(this)">Delete</button>
-        </td>
-      `;
-      table.appendChild(newRow);
-
+  
+      const formData = new FormData();
+      formData.append("materialName", name);
+      formData.append("supplier", supplier);
+      formData.append("quantity", qty);
+      formData.append("cost", cost);
+      formData.append("entryDate", date);
+      formData.append("hsnCode", hsn);
+  
+      fetch("add_raw_material.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.text())
+      .then(result => {
+        if(result.trim() === "Success"){
+          alert("Raw material added successfully.");
+          refreshRawTable();
+        } else {
+          alert("Error: " + result);
+        }
+      })
+      .catch(error => console.error("Error:", error));
+  
+      // Clear input fields
       document.getElementById("matName").value = "";
       document.getElementById("matSupplier").value = "";
       document.getElementById("matQty").value = "";
@@ -316,6 +324,21 @@ button:last-of-type {
       document.getElementById("matDate").value = "";
       document.getElementById("matHSN").value = "";
     }
+  
+    function refreshRawTable() {
+      fetch("get_raw_materials.php")
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById("rawMaterialBody").innerHTML = html;
+        })
+        .catch(error => console.error("Error refreshing raw materials:", error));
+    }
+  
+    // Auto-refresh on page load and every 10 seconds
+    window.onload = function() {
+      refreshRawTable();
+      setInterval(refreshRawTable, 10000);
+    };
 
     function deleteRow(button) {
       const row = button.closest("tr");

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Inventory Management</title>
   <link rel="stylesheet" href="inventory1.css" />
-  <link rel="stylesheet" href="/darkmode.css" />
+  <link rel="stylesheet" href="../darkmode.css" />
   <style>
     .highlight {
       background-color: #ffff99 !important;
@@ -17,10 +17,10 @@
     <h1>Inventory-management</h1>
     <nav>
       <ul>
-        <li><a href="/first_page/firstpage.html">Home</a></li>
+        <li><a href="../first_page/firstpage.html">Home</a></li>
         <li><a href="#available-stock" class="active">Product-management</a></li>
-        <li><a href="/Available_material/available_material.html">Raw_material-management</a></li>
-        <li><a href="/inventory/IN-OUTward.html">IN/OUT</a></li>
+        <li><a href="../Available_material/available_material.html">Raw_material-management</a></li>
+        <li><a href="../inventory/IN-OUTward.html">IN/OUT</a></li>
       </ul>
     </nav>
   </header>
@@ -70,57 +70,133 @@
           <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="availableProductsBody"></tbody>
+
+      <!-- <tbody> -->
         <!-- Product rows will appear here -->
-      </tbody>
+      <!-- </tbody> -->
     </table>
   </section>
 
   <script>
     function addToStock() {
-      const name = document.getElementById("productName").value.trim();
-      const supplier = document.getElementById("supplier").value.trim();
-      const hsn = document.getElementById("hsnCode").value.trim();
-      const qty = document.getElementById("quantity").value;
-      const price = document.getElementById("price").value;
-      const date = document.getElementById("stockDate").value;
 
-      if (!name || !supplier || !hsn || !qty || !price || !date) {
-        alert("Please fill all fields.");
-        return;
-      }
+        const name = document.getElementById("productName").value.trim();
+        const supplier = document.getElementById("supplier").value.trim();
+        const hsn = document.getElementById("hsnCode").value.trim();
+        const qty = document.getElementById("quantity").value;
+        const price = document.getElementById("price").value;
+        const date = document.getElementById("stockDate").value;
+    
+        if (!name || !supplier || !hsn || !qty || !price || !date) {
+          alert("Please fill all fields.");
+          return;
+        }
 
-      const stockTable = document.getElementById("productStock").querySelector("tbody");
+        const stockTable = document.getElementById("productStock").querySelector("tbody");
       const newRow = document.createElement("tr");
 
       newRow.innerHTML = `
         <td><input type="text" value="${name}" readonly></td>
-        <td><input type="text" value="${supplier}" readonly></td>
         <td><input type="text" value="${hsn}" readonly></td>
         <td><input type="number" value="${qty}" readonly></td>
         <td><input type="number" value="${price}" readonly></td>
         <td><input type="date" value="${date}" readonly></td>
-        <td>
-          <button onclick="updateRow(this)">Update</button>
-          <button onclick="deleteRow(this)">Delete</button>
-        </td>
+        <td><button onclick="deleteRow(this)">Delete</button></td>
       `;
-
       stockTable.appendChild(newRow);
-
-      // Clear inputs
-      document.getElementById("productName").value = "";
-      document.getElementById("supplier").value = "";
-      document.getElementById("hsnCode").value = "";
-      document.getElementById("quantity").value = "";
-      document.getElementById("price").value = "";
-      document.getElementById("stockDate").value = "";
+    
+        const formData = new FormData();
+        formData.append("productName", name);
+        formData.append("supplier", supplier);
+        formData.append("hsnCode", hsn);
+        formData.append("quantity", qty);
+        formData.append("price", price);
+        formData.append("entryDate", date);
+    
+        fetch('../inventory/add_product.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(result => {
+          if(result.trim() === "Success"){
+            alert("Product added successfully.");
+            refreshProducts(); // Call function to refresh the available products table.
+          } else {
+            alert("Error: " + result);
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    
+        // Clear inputs
+        document.getElementById("productName").value = "";
+        document.getElementById("supplier").value = "";
+        document.getElementById("hsnCode").value = "";
+        document.getElementById("quantity").value = "";
+        document.getElementById("price").value = "";
+        document.getElementById("stockDate").value = "";
+      
+    
+      // New function to refresh the available products table
+      function refreshProducts() {
+        fetch('../inventory/get_products.php')
+          .then(response => response.text())
+          .then(html => {
+            document.querySelector("#productStock tbody").innerHTML = html;
+          })
+          .catch(error => console.error("Error refreshing products:", error));
+      }
     }
 
-    function deleteRow(button) {
-      const row = button.closest("tr");
-      row.remove();
+    // New function to refresh the available products table
+    function refreshProducts() {
+      fetch('../inventory/get_products.php')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById("availableProductsBody").innerHTML = html;
+        })
+        .catch(error => console.error("Error refreshing products:", error));
     }
+
+    // 👇 Load data on page load
+  window.onload = function() {
+    refreshProducts();
+    setInterval(refreshProducts, 10000); // Auto-refresh every 10 seconds
+  };
+
+  function deleteRow(button) {
+    const row = button.closest("tr");
+    const idCell = row.getAttribute("productName"); // ✨ fetch the productName from the row
+  
+    if (!idCell) {
+      alert("Missing product ID.");
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append("productName", idCell);
+  
+    fetch('../inventory/delete_product.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      if(result.trim() === "Success"){
+        alert("Product deleted successfully.");
+        refreshProducts(); // ✨ refresh table after deletion
+      } else {
+        alert("Error: " + result);
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+  }
+  
 
     function updateRow(button) {
       const row = button.closest("tr");
