@@ -1,9 +1,11 @@
 <?php
 $host    = "localhost";
 $dbUser  = "root";
-$dbPass  = "ce174";
+// $dbPass  = "ce174";
+$dbPass  = "";
 $dbName  = "my_database";
-$dbPort  = 3307;
+// $dbPort  = 3307;
+$dbPort  = 8000;
 
 $conn = new mysqli($host, $dbUser, $dbPass, $dbName, $dbPort);
 if ($conn->connect_error) {

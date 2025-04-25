@@ -4,9 +4,11 @@ session_start();
 
 $host = "localhost";
 $user = "root";
-$pass = "ce174";
+// $pass = "ce174";
+$pass = "";
 $db = "my_database";
-$port = 3307;
+// $port = 3307;
+$port = 8000;
 
 $conn = new mysqli($host, $user, $pass, $db, $port);
 if ($conn->connect_error) {

@@ -88,20 +88,12 @@ header {
     text-align: center;
     color: white;
 }
-/* .hero-content { */
-    /* max-width: 600px; */
-/* } */
+.hero-content {
+    max-width: 600px;
+}
 /* Dark mode fixes */
 .dark-mode .hero-content {
     background-color: black;
-    color: white;
-}
-
-.dark-mode .hero h2 {
-    color: white;
-}
-
-.dark-mode .hero p {
     color: white;
 }
 
@@ -123,10 +115,10 @@ button:hover {
 }
 
 /* Buttons */
-/* .dark-mode button { */
-    /* background: #444;
-    color: white; */
-/* } */
+.dark-mode button {
+    background: #444;
+    color: white;
+}
 
 .dark-mode button:hover {
     background: #666;
@@ -164,9 +156,9 @@ button:hover {
 }
 
 /* Dark mode for buttons */
-/* .dark-mode .btn { */
-    /* background-color: #555; */
-/* } */
+.dark-mode .btn {
+    background-color: #555;
+}
 
 /* Products Section */
 .products {
@@ -290,9 +282,8 @@ footer {
     margin-top: 50px; /* Adds gap from upper sections */
     margin-bottom: 40px;
     padding: 20px;
-    background-color: darkgrey;
-    border-radius: 25px;
-    border-style: 20px solid;
+    background-color: #f9f9f9;
+    border-radius: 10px;
 }
 
 /* Center the heading */
