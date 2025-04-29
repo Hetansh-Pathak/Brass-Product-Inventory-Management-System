@@ -28,6 +28,35 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+function deleteRow(button) {
+  const row = button.closest("tr");
+  const productName = row.getAttribute("data-id");
 
+  if (!productName) {
+    alert("Missing product name");
+    return;
+  }
 
+  if (!confirm("Are you sure you want to delete this product?")) return;
+
+  const formData = new FormData();
+  formData.append("productName", productName);
+
+  fetch("../inventory/delete_product.php", {
+    method: "POST",
+    body: formData
+  })
+    .then(response => response.text())
+    .then(result => {
+      if (result.trim() === "Success") {
+        alert("Product deleted successfully.");
+        row.remove(); // remove row from UI
+      } else {
+        alert("Delete failed: " + result);
+      }
+    })
+    .catch(error => {
+      console.error("Error deleting product:", error);
+    });
+}
 

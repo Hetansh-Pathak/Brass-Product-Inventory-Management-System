@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brass Industries | Home</title>
+  <link rel="stylesheet" href="orders.css" />
+  <link rel="stylesheet" href="../darkmode.css"/>
+  <style>
+    .order-btn {
+      margin: 10px 0;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .search-bar {
+      margin: 20px;
+      text-align: center;
+    }
+    .search-bar input {
+      padding: 8px;
+      width: 250px;
+    }
+    .search-bar button {
+      padding: 8px 15px;
+      margin-left: 10px;
+    }
+    tr.highlight {
+      background-color: #ffff99 !important;
+    }
+    tr.highlight input, tr.highlight select {
+      background-color: #ffff99 !important;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <h1>Brass Industries</h1>
+  </div>
+</header>
+
+<!-- Search Bar -->
+
+
+<section id="orders">
+  <h2>Order Details</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer Name</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Actions</th> 
+      </tr>
+    </thead>
+    <tbody id="orderTableBody">
+      <!-- Rows will be added dynamically -->
+    </tbody>
+  </table>
+  <button onclick="addNewOrder()" class="order-btn" type="button">Add New Order</button>
+</section>
+
+<footer>
+  <p>&copy; 2025 Brass Industries. All Rights Reserved.</p>
+</footer>
+
+<button id="darkModeToggle" onclick="toggleDarkMode()" class="darkmode">Dark Mode</button>
+
+<script>
+  function addNewOrder() {
+    const tbody = document.getElementById("orderTableBody");
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td><input type="text" placeholder="Order ID"></td>
+      <td><input type="text" placeholder="Customer Name"></td>
+      <td><input type="text" placeholder="Product"></td>
+      <td><input type="number" placeholder="Quantity"></td>
+      <td>
+        <select>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </td>
+      <td>
+        <button onclick="addOrder(this)" class="add-btn">Add</button>
+        <button onclick="deleteOrder(this)" class="delete-btn">Delete</button>
+      </td>
+    `;
+
+    tbody.appendChild(row);
+  }
+
+  function deleteOrder(button) {
+    const row = button.closest("tr");
+    row.remove();
+  }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+  function searchOrders() {
+    const input = document.getElementById("searchInput").value.toLowerCase().trim();
+    const rows = document.querySelectorAll("#orderTableBody tr");
+    let found = false;
+
+    rows.forEach(row => {
+      row.classList.remove("highlight");
+
+      const cells = row.querySelectorAll("td");
+
+      for (let cell of cells) {
+        let text = "";
+
+        const inputElement = cell.querySelector("input, select");
+        if (inputElement) {
+          text = inputElement.value.trim().toLowerCase();
+        } else {
+          text = cell.innerText.trim().toLowerCase();
+        }
+
+        if (text.includes(input)) {
+          row.classList.add("highlight");
+          found = true;
+          break;
+        }
+      }
+    });
+
+    if (!found && input !== "") {
+      alert("No matching order found.");
+    }
+  }
+</script>
+
+</body>
+</html>

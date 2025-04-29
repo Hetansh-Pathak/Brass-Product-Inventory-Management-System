@@ -1,32 +1,37 @@
 <?php
-$host    = "localhost";
-$dbUser  = "root";
-$dbPass  = "ce174";
-$dbName  = "my_database";
-$dbPort  = 3307;
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "my_database";
+$port = 8000;
 
-$conn = new mysqli($host, $dbUser, $dbPass, $dbName, $dbPort);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database, $port);
+
+// Better error handling
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+  die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT ProductName, Supplier, HSNCode, Quantity, Price, EntryDate FROM products ORDER BY EntryDate DESC";
+// Fetch available products
+$sql = "SELECT productName, supplier, hsnCode, quantity, price, entryDate FROM products"; // your table name
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "<tr>
-                <td>" . htmlspecialchars($row["ProductName"]) . "</td>
-                <td>" . htmlspecialchars($row["Supplier"]) . "</td>
-                <td>" . htmlspecialchars($row["HSNCode"]) . "</td>
-                <td>" . htmlspecialchars($row["Quantity"]) . "</td>
-                <td>" . htmlspecialchars($row["Price"]) . "</td>
-                <td>" . htmlspecialchars($row["EntryDate"]) . "</td>
-                <td><button class='delete-btn'>Delete</button></td>
-              </tr>";
-    }
+  while($row = $result->fetch_assoc()) {
+    echo '<tr data-id="' . htmlspecialchars($row['productName']) . '">';
+    echo '<td><input type="text" value="' . htmlspecialchars($row['productName']) . '" readonly></td>';
+    echo '<td><input type="text" value="' . htmlspecialchars($row['supplier']) . '" readonly></td>';
+    echo '<td><input type="text" value="' . htmlspecialchars($row['hsnCode']) . '" readonly></td>';
+    echo '<td><input type="number" value="' . htmlspecialchars($row['quantity']) . '" readonly></td>';
+    echo '<td><input type="number" value="' . htmlspecialchars($row['price']) . '" readonly></td>';
+    echo '<td><input type="text" value="' . htmlspecialchars($row['entryDate']) . '" readonly></td>';
+    echo '<td><button onclick="deleteRow(this)" class="delete-btn">Delete</button></td>';
+    echo '</tr>';
+  }
 } else {
-    echo "<tr><td colspan='7'>No products found.</td></tr>";
+  echo "<tr><td colspan='7'>No products available</td></tr>";
 }
 
 $conn->close();

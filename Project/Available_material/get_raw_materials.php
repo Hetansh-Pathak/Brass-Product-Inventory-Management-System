@@ -1,9 +1,11 @@
 <?php
 $host = "localhost";
 $user = "root";
-$password = "ce174";
+// $password = "ce174";
+$password = "";
 $dbname = "my_database";
-$port = 3307;
+// $port = 3307;
+$port = 8000;
 
 $conn = new mysqli($host, $user, $password, $dbname, $port);
 if ($conn->connect_error) {
@@ -15,7 +17,6 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Each row gets a data-id attribute based on RawMaterialID
         echo "<tr data-id='" . $row['RawMaterialID'] . "'>";
         echo "<td>" . htmlspecialchars($row['MaterialName']) . "</td>";
         echo "<td>" . htmlspecialchars($row['Supplier']) . "</td>";

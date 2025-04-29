@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brass Industries | Home</title>
+  <link rel="stylesheet" href="First.css" />
+  <link rel="stylesheet" href="../darkmode.css"/>
+  <style>
+    .order-btn {
+      margin: 10px 0;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <h1>Brass Industries</h1>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content" style="color: black;">
+    <h2>High-Quality Brass Products & Billing Management</h2>
+    <p>We provide top-notch brass manufacturing and seamless billing solutions.</p>
+    <a href="../first_page/firstpage.html" class="btn" style="background-color: rgb(255, 0, 255);">Home</a>
+    <a href="../orders/orders.php" class="btn">View Orders</a>
+    <a href="../inventory/inventory.html" class="btn secondary" style="background-color: blue;">Explore Inventory</a>
+    <a href="../billing/billing.html" class="btn" style="background-color: #ff0000; color: white;">Go to Billing</a>
+  </div>
+</section>
+
+
+
+<!-- Add Dashboard Below :  -->
+
+
+<!-- <section id="orders">
+  <h2>Order Details</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer Name</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Actions</th> 
+      </tr>
+    </thead>
+    <tbody id="orderTableBody"> -->
+      <!-- Rows will be added dynamically -->
+    <!-- </tbody>
+  </table>
+  <button onclick="addNewOrder()" class="order-btn">Add New Order</button>
+</section> -->
+
+
+
+<!-- Add Dashboard Above :  -->
+
+
+
+<section class="products">
+  <h2>Our Brass Products</h2>
+  <div class="product-list">
+    <div class="product-item">
+      <img src="../photos/rods.jpeg" alt="Brass Rod" />
+      <h3>Brass Rods</h3>
+      <p>Durable and high-quality brass rods used in various industries.</p>
+    </div>
+    <div class="product-item">
+      <img src="../photos/sheets.jpeg" alt="Brass Sheet" />
+      <h3>Brass Sheets</h3>
+      <p>Precision-cut brass sheets for industrial and decorative use.</p>
+    </div>
+    <div class="product-item">
+      <img src="../photos/fittings.jpeg" alt="Brass Fittings" />
+      <h3>Brass Fittings</h3>
+      <p>Corrosion-resistant brass fittings for plumbing and construction.</p>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Why Choose Us?</h2>
+  <div class="service-list">
+    <div class="service-item">
+      <img src="../photos/premium.jpeg" alt="Quality" />
+      <h3>Premium Quality</h3>
+      <p>Best-in-class brass products for various industries.</p>
+    </div>
+    <div class="service-item">
+      <img src="../photos/secure.png" alt="Secure" />
+      <h3>Secure Billing</h3>
+      <p>Efficient and error-free billing for all transactions.</p>
+    </div>
+    <div class="service-item">
+      <img src="../photos/fast delivery.jpeg" alt="Delivery" />
+      <h3>Fast Delivery</h3>
+      <p>Timely and safe delivery of all brass products.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Get in Touch</h2>
+  <p>Have any questions? Reach out to us for more details.</p>
+  <form id="contactForm" onsubmit="return showPopup(event)">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="email" id="email" placeholder="Your Email" required />
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button class="send-button">Send Message</button>
+  </form>
+</section>
+
+<div id="popupNotification" class="popup">
+  Thank you! Your message has been sent.
+</div>
+
+<footer>
+  <p>&copy; 2025 Brass Industries. All Rights Reserved.</p>
+</footer>
+
+<button id="darkModeToggle" onclick="toggleDarkMode()" class="darkmode">Dark Mode</button>
+
+<script>
+  function addNewOrder() {
+    const tbody = document.getElementById("orderTableBody");
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td><input type="text" placeholder="Order ID"></td>
+      <td><input type="text" placeholder="Customer Name"></td>
+      <td><input type="text" placeholder="Product"></td>
+      <td><input type="number" placeholder="Quantity"></td>
+      <td>
+        <select>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </td>
+      <td><button onclick="deleteOrder(this)" class="delete-btn">Delete</button></td>
+    `;
+
+    tbody.appendChild(row);
+  }
+
+  function deleteOrder(button) {
+    const row = button.closest("tr");
+    row.remove();
+  }
+
+  function showPopup(event) {
+    event.preventDefault();
+    const popup = document.getElementById("popupNotification");
+    popup.style.display = "block";
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 3000);
+    document.getElementById("contactForm").reset();
+    return false;
+  }
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+</script>
+
+</body>
+</html>

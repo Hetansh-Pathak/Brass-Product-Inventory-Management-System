@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="available-material.css" />
   <link rel="stylesheet" href="/darkmode.css" />
   <style>
-   /* Google Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 * {
@@ -55,9 +55,7 @@
       tr.highlight {
         background-color: #ffff99;
       }
-      
 
-/* Header */
 header {
     background-color: #2c3e50;
     color: white;
@@ -88,7 +86,7 @@ nav ul li a:hover, .active {
     background-color: #f39c12;
     border-radius: 5px;
 }
-/* Sections */
+
 section {
     text-align: center;
     padding: 40px;
@@ -102,7 +100,7 @@ h2 {
     margin-bottom: 20px;
     font-size: 28px;
 }
-/* Tables */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -128,7 +126,6 @@ tbody tr:hover {
     cursor: pointer;
 }
 
-/* Buttons */
 button {
     margin-top: 15px;
     padding: 10px 15px;
@@ -221,8 +218,14 @@ button:last-of-type {
     <h1>Raw Material Inventory</h1>
     <nav>
       <ul>
+        <li><a href="../first_page/firstpage.php">Home</a></li>
+        <li><a href="../orders/orders.php">Orders</a></li>
+        <!-- <li><a href="../inventory/inventory.html">Product-management</a></li> -->
         <li><a href="../inventory/inventory.html">Inventory</a></li>
+        <!-- <li><a href="../Available_material/available_material.html">Raw_material-management</a></li> -->
         <li><a href="#" class="active">Available-Raw-Material</a></li>
+        <li><a href="../inventory/IN-OUTward.php">IN/OUT</a></li>
+        <li><a href="../billing/billing.html">Billing</a></li>
       </ul>
     </nav>
   </header>
@@ -273,14 +276,12 @@ button:last-of-type {
         </tr>
       </thead>
       <tbody id="rawMaterialBody">
-        <!-- New rows go here -->
       </tbody>
     </table>
   </section>
 
   <script>
     function addRawMaterial() {
-      // Get values from form fields (using the IDs in your HTML)
       const name = document.getElementById("matName").value.trim();
       const supplier = document.getElementById("matSupplier").value.trim();
       const qty = document.getElementById("matQty").value;
@@ -315,8 +316,7 @@ button:last-of-type {
         }
       })
       .catch(error => console.error("Error:", error));
-  
-      // Clear input fields
+
       document.getElementById("matName").value = "";
       document.getElementById("matSupplier").value = "";
       document.getElementById("matQty").value = "";
@@ -333,8 +333,7 @@ button:last-of-type {
         })
         .catch(error => console.error("Error refreshing raw materials:", error));
     }
-  
-    // Auto-refresh on page load and every 10 seconds
+
     window.onload = function() {
       refreshRawTable();
       setInterval(refreshRawTable, 10000);
@@ -360,26 +359,36 @@ button:last-of-type {
     }
 
     function searchMaterial() {
-      const input = document.getElementById("searchInput").value.toLowerCase().trim();
-      const rows = document.querySelectorAll("#raw-material-table tbody tr");
-      let found = false;
+  const input = document.getElementById("searchInput").value.toLowerCase().trim();
+  const rows = document.querySelectorAll("#raw-material-table tbody tr");
+  let found = false;
 
-      rows.forEach(row => {
-        row.classList.remove("highlight");
-        const cells = row.querySelectorAll("td input");
-        for (let cell of cells) {
-          if (cell.value.toLowerCase().includes(input)) {
-            row.classList.add("highlight");
-            found = true;
-            break;
-          }
-        }
-      });
+  rows.forEach(row => {
+    row.classList.remove("highlight");
+    const cells = row.querySelectorAll("td");
 
-      if (!found && input !== "") {
-        alert("No matching raw material found.");
+    for (let cell of cells) {
+      let text = "";
+
+      const inputElement = cell.querySelector("input");
+      if (inputElement) {
+        text = inputElement.value.trim().toLowerCase();
+      } else {
+        text = cell.innerText.trim().toLowerCase();
+      }
+
+      if (text.includes(input)) {
+        row.classList.add("highlight");
+        found = true;
+        break;
       }
     }
+  });
+
+  if (!found && input !== "") {
+    alert("No matching raw material found.");
+  }
+}
   </script>
 
 </body>

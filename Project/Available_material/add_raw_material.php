@@ -1,16 +1,17 @@
 <?php
 $host    = "localhost";
 $user    = "root";
-$password= "ce174";
+// $password= "ce174";
+$password= "";
 $dbname  = "my_database";
-$port    = 3307;
+// $port    = 3307;
+$port    = 8000;
 
 $conn = new mysqli($host, $user, $password, $dbname, $port);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve values from POST
 $materialName = $_POST['materialName'];
 $supplier     = $_POST['supplier'];
 $quantity     = (int)$_POST['quantity'];
@@ -18,7 +19,6 @@ $cost         = (float)$_POST['cost'];
 $entryDate    = $_POST['entryDate'];
 $hsnCode      = $_POST['hsnCode'];
 
-// 1. Insert into rawmaterials table
 $sql1 = "INSERT INTO rawmaterials (MaterialName, Supplier, Quantity, Cost, EntryDate, HSNCode)
         VALUES (?, ?, ?, ?, ?, ?)";
 $stmt1 = $conn->prepare($sql1);
@@ -29,15 +29,6 @@ if (!$stmt1->execute()) {
 }
 $stmt1->close();
 
-// 2. Insert into InwardTransactions table for raw material
-// For raw materials, we use the following mapping:
-// - ProductName -> materialName
-// - HSNCode remains the same
-// - Sender -> supplier
-// - Quantity remains the same
-// - Price -> cost
-// - EntryDate remains the same
-// - Material -> 'Raw'
 $materialType = "Raw";
 $sql2 = "INSERT INTO InwardTransactions (ProductName, HSNCode, Sender, Quantity, Price, EntryDate, Material)
          VALUES (?, ?, ?, ?, ?, ?, ?)";
