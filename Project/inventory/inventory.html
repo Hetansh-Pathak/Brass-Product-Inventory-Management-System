@@ -73,7 +73,6 @@
         </tr>
       </thead>
       <tbody id="availableProductsBody">
-        <!-- Product rows will be loaded here from get_products.php -->
       </tbody>
     </table>
   </section>
@@ -117,7 +116,6 @@
         console.error("Error:", error);
       });
 
-      // Clear the input fields
       document.getElementById("productName").value = "";
       document.getElementById("supplier").value = "";
       document.getElementById("hsnCode").value = "";
@@ -188,13 +186,11 @@
   rows.forEach(row => {
     row.classList.remove("highlight");
 
-    // Check all td and td > input
     const cells = row.querySelectorAll("td");
 
     for (let cell of cells) {
       let text = "";
 
-      // If it contains input field
       const inputElement = cell.querySelector("input");
       if (inputElement) {
         text = inputElement.value.trim().toLowerCase();
@@ -218,7 +214,7 @@
 
     window.onload = function() {
       refreshProducts();
-      setInterval(refreshProducts, 10000); // Auto-refresh every 10 seconds
+      setInterval(refreshProducts, 10000); 
     };
   </script>
 </body>

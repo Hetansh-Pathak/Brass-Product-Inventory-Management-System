@@ -1,7 +1,4 @@
 <?php
-// inventory.php
-
-// Connection settings
 $host = "localhost";
 $dbUser = "root";
 $dbPass = "";

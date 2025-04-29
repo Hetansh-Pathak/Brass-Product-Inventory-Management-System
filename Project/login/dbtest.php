@@ -1,9 +1,9 @@
 <?php
 $host = "localhost";
 $username = "root";
-$password = "ce174";           // ← Your MySQL Workbench password
-$database = "my_database";     // ← Exact name of your DB
-$port = 3307;                  // ← Your custom MySQL port
+$password = "ce174";           
+$database = "my_database";     
+$port = 3307;                  
 
 $conn = new mysqli($host, $username, $password, $database, $port);
 

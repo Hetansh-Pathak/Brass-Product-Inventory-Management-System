@@ -1,5 +1,5 @@
 <?php
-ob_start(); // Start output buffering
+ob_start(); 
 session_start();
 
 $host = "localhost";
@@ -38,5 +38,5 @@ if ($result->num_rows === 1) {
 }
 
 $conn->close();
-ob_end_flush(); // End output buffering
+ob_end_flush(); 
 ?>
