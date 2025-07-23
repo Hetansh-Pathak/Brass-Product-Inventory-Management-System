@@ -6,6 +6,7 @@ import {
   DialogActions,
   Button,
   TextField,
+  Grid,
   FormControl,
   InputLabel,
   Select,
@@ -20,7 +21,6 @@ import {
   StepLabel,
   InputAdornment,
 } from '@mui/material';
-import Grid from '@mui/material/Grid2';
 import {
   Close,
   Add,
