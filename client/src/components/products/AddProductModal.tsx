@@ -109,7 +109,7 @@ const schema = yup.object({
 const categories = ['Rods', 'Sheets', 'Fittings', 'Pipes', 'Custom', 'Other'];
 const units = ['pieces', 'kg', 'meters', 'feet', 'sheets', 'rolls'];
 const dimensionUnits = ['mm', 'cm', 'inch', 'meter'];
-const weightUnits = ['kg', 'grams', 'tonnes'];
+// const weightUnits = ['kg', 'grams', 'tonnes'];
 
 const steps = ['Basic Info', 'Specifications', 'Inventory', 'Pricing'];
 
