@@ -724,7 +724,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid xs={12}>
+              <Grid item xs={12}>
                 <Controller
                   name="supplierContact"
                   control={control}
@@ -740,7 +740,7 @@ const RawMaterials: React.FC = () => {
               </Grid>
 
               {/* Composition Section */}
-              <Grid xs={12}>
+              <Grid item xs={12}>
                 <Accordion>
                   <AccordionSummary expandIcon={<ExpandMore />}>
                     <Typography variant="h6">Material Composition</Typography>
@@ -884,7 +884,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid xs={12}>
+              <Grid item xs={12}>
                 <Controller
                   name="costPrice"
                   control={control}
