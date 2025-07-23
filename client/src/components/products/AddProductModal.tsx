@@ -19,8 +19,8 @@ import {
   Step,
   StepLabel,
   InputAdornment,
+  Grid,
 } from '@mui/material';
-import Grid from '@mui/material/Grid2';
 import {
   Close,
   Add,
