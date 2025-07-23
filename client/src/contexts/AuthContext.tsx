@@ -204,6 +204,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   ): Promise<void> => {
     dispatch({ type: 'LOGIN_START' });
     try {
+      console.log('Attempting registration to:', `${API_BASE_URL}/auth/register`);
       const response = await api.post('/auth/register', {
         username,
         email,
@@ -221,7 +222,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       toast.success('Account created successfully!');
     } catch (error: any) {
       dispatch({ type: 'LOGIN_FAILURE' });
-      const message = error.response?.data?.message || 'Registration failed';
+      console.error('Registration error:', error);
+
+      let message = 'Registration failed';
+      if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
+        message = 'Backend server is not running. Please start the server first.';
+      } else if (error.response?.data?.message) {
+        message = error.response.data.message;
+      } else if (error.message) {
+        message = error.message;
+      }
+
       toast.error(message);
       throw new Error(message);
     }
