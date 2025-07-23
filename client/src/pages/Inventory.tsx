@@ -173,6 +173,7 @@ const Inventory: React.FC = () => {
 
   useEffect(() => {
     fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, rowsPerPage, searchTerm, categoryFilter, statusFilter]);
 
   const handleAddProduct = async (productData: any) => {
