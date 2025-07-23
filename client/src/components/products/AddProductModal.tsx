@@ -216,7 +216,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <Controller
                 name="category"
                 control={control}
@@ -233,7 +233,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid xs={12} md={6}>
+            <Grid item xs={12} md={6}>
               <Controller
                 name="hsnCode"
                 control={control}
