@@ -660,7 +660,7 @@ const RawMaterials: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogContent>
             <Grid container spacing={2}>
-              <Grid xs={12} md={6}>
+              <Grid item xs={12} md={6}>
                 <Controller
                   name="materialName"
                   control={control}
@@ -676,7 +676,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid xs={12} md={6}>
+              <Grid item xs={12} md={6}>
                 <Controller
                   name="type"
                   control={control}
@@ -694,7 +694,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid xs={12} md={6}>
+              <Grid item xs={12} md={6}>
                 <Controller
                   name="grade"
                   control={control}
@@ -708,7 +708,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid xs={12} md={6}>
+              <Grid item xs={12} md={6}>
                 <Controller
                   name="supplierName"
                   control={control}
@@ -747,7 +747,7 @@ const RawMaterials: React.FC = () => {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Grid container spacing={2}>
-                      <Grid xs={12} md={6}>
+                      <Grid item xs={12} md={6}>
                         <Controller
                           name="purity"
                           control={control}
@@ -763,7 +763,7 @@ const RawMaterials: React.FC = () => {
                           )}
                         />
                       </Grid>
-                      <Grid xs={12} md={6}>
+                      <Grid item xs={12} md={6}>
                         <Controller
                           name="copper"
                           control={control}
@@ -779,7 +779,7 @@ const RawMaterials: React.FC = () => {
                           )}
                         />
                       </Grid>
-                      <Grid xs={12} md={6}>
+                      <Grid item xs={12} md={6}>
                         <Controller
                           name="zinc"
                           control={control}
@@ -795,7 +795,7 @@ const RawMaterials: React.FC = () => {
                           )}
                         />
                       </Grid>
-                      <Grid xs={12} md={6}>
+                      <Grid item xs={12} md={6}>
                         <Controller
                           name="tin"
                           control={control}
@@ -811,7 +811,7 @@ const RawMaterials: React.FC = () => {
                           )}
                         />
                       </Grid>
-                      <Grid xs={12} md={6}>
+                      <Grid item xs={12} md={6}>
                         <Controller
                           name="lead"
                           control={control}
