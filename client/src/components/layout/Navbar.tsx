@@ -10,8 +10,6 @@ import {
   Box,
   Badge,
   Tooltip,
-  Switch,
-  FormControlLabel,
   useTheme,
   alpha,
 } from '@mui/material';
