@@ -35,7 +35,7 @@ const App: React.FC = () => {
 };
 
 const AppContent: React.FC = () => {
-  const { theme, darkMode } = useThemeContext();
+  const { darkMode } = useThemeContext();
 
   const muiTheme = createTheme({
     palette: {
