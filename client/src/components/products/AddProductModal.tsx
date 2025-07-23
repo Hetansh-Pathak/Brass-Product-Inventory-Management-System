@@ -457,7 +457,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               </Typography>
             </Grid>
             
-            <Grid xs={12} sm={4}>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Controller
                 name="inventory.location.warehouse"
                 control={control}
@@ -472,7 +472,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid xs={12} sm={4}>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Controller
                 name="inventory.location.section"
                 control={control}
@@ -487,7 +487,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid xs={12} sm={4}>
+            <Grid size={{ xs: 12, sm: 4 }}>
               <Controller
                 name="inventory.location.shelf"
                 control={control}
