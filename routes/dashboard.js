@@ -5,6 +5,7 @@ const Bill = require('../models/Bill');
 const Transaction = require('../models/Transaction');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
+const { handleFallback } = require('../middleware/fallback');
 
 const router = express.Router();
 
@@ -13,6 +14,9 @@ const router = express.Router();
 // @access  Private
 router.get('/overview', auth, async (req, res) => {
   try {
+    // Check for fallback mode first
+    const fallbackResult = handleFallback(req, res, 'dashboard');
+    if (fallbackResult !== false) return;
     const today = new Date();
     const startOfDay = new Date(today.setHours(0, 0, 0, 0));
     const endOfDay = new Date(today.setHours(23, 59, 59, 999));
