@@ -10,7 +10,6 @@ import {
   Avatar,
   Switch,
   FormControlLabel,
-  Divider,
 } from '@mui/material';
 import {
   Person,
