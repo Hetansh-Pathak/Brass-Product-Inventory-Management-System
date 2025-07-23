@@ -41,7 +41,7 @@ const Profile: React.FC = () => {
 
         <Grid container spacing={3}>
           {/* Profile Info */}
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <Card>
               <CardContent>
                 <Box display="flex" alignItems="center" gap={2} mb={3}>
@@ -99,7 +99,7 @@ const Profile: React.FC = () => {
           </Grid>
 
           {/* Security Settings */}
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <Card>
               <CardContent>
                 <Box display="flex" alignItems="center" gap={2} mb={3}>
@@ -137,7 +137,7 @@ const Profile: React.FC = () => {
           </Grid>
 
           {/* Preferences */}
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <Card>
               <CardContent>
                 <Box display="flex" alignItems="center" gap={2} mb={3}>
@@ -161,7 +161,7 @@ const Profile: React.FC = () => {
           </Grid>
 
           {/* Notifications */}
-          <Grid item xs={12} md={6}>
+          <Grid xs={12} md={6}>
             <Card>
               <CardContent>
                 <Box display="flex" alignItems="center" gap={2} mb={3}>
