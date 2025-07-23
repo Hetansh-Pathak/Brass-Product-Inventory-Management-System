@@ -9,8 +9,8 @@ import {
   Avatar,
   Switch,
   FormControlLabel,
+  Grid,
 } from '@mui/material';
-import Grid from '@mui/material/Grid2';
 import {
   Person,
   Security,
