@@ -22,7 +22,6 @@ import {
   Edit,
   Delete,
   Print,
-  Download,
   Receipt,
   Person,
   AttachMoney,
