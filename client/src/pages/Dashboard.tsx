@@ -226,7 +226,7 @@ const Dashboard: React.FC = () => {
 
       {/* Stats Cards */}
       <Grid container spacing={3} mb={4}>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Total Products"
             value={mockStats.products.totalProducts}
@@ -237,7 +237,7 @@ const Dashboard: React.FC = () => {
             delay={0.1}
           />
         </Grid>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Total Revenue"
             value={`$${(mockStats.bills.totalRevenue / 1000).toFixed(0)}K`}
@@ -248,7 +248,7 @@ const Dashboard: React.FC = () => {
             delay={0.2}
           />
         </Grid>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Total Bills"
             value={mockStats.bills.totalBills}
@@ -259,7 +259,7 @@ const Dashboard: React.FC = () => {
             delay={0.3}
           />
         </Grid>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Raw Materials"
             value={mockStats.materials.totalMaterials}
