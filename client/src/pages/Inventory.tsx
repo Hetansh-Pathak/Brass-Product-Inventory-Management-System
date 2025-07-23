@@ -391,7 +391,7 @@ const Inventory: React.FC = () => {
                 }}
               />
             </Grid>
-            <Grid xs={6} md={2}>
+            <Grid item xs={6} md={2}>
               <FormControl fullWidth size="small">
                 <InputLabel>Category</InputLabel>
                 <Select
@@ -406,7 +406,7 @@ const Inventory: React.FC = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid xs={6} md={2}>
+            <Grid item xs={6} md={2}>
               <FormControl fullWidth size="small">
                 <InputLabel>Status</InputLabel>
                 <Select
@@ -420,7 +420,7 @@ const Inventory: React.FC = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid xs={6} md={2}>
+            <Grid item xs={6} md={2}>
               <Tooltip title="Refresh Data">
                 <IconButton
                   onClick={fetchProducts}
@@ -431,7 +431,7 @@ const Inventory: React.FC = () => {
                 </IconButton>
               </Tooltip>
             </Grid>
-            <Grid xs={6} md={2}>
+            <Grid item xs={6} md={2}>
               <Button
                 fullWidth
                 variant="outlined"
