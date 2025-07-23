@@ -261,7 +261,7 @@ const Inventory: React.FC = () => {
 
       {/* Stats Cards */}
       <Grid container spacing={3} mb={3}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -287,7 +287,7 @@ const Inventory: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -313,7 +313,7 @@ const Inventory: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -339,7 +339,7 @@ const Inventory: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -377,7 +377,7 @@ const Inventory: React.FC = () => {
       <Card sx={{ mb: 3 }}>
         <CardContent>
           <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} md={4}>
+            <Grid xs={12} md={4}>
               <TextField
                 fullWidth
                 placeholder="Search products..."
@@ -392,7 +392,7 @@ const Inventory: React.FC = () => {
                 }}
               />
             </Grid>
-            <Grid item xs={6} md={2}>
+            <Grid xs={6} md={2}>
               <FormControl fullWidth size="small">
                 <InputLabel>Category</InputLabel>
                 <Select
@@ -407,7 +407,7 @@ const Inventory: React.FC = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={6} md={2}>
+            <Grid xs={6} md={2}>
               <FormControl fullWidth size="small">
                 <InputLabel>Status</InputLabel>
                 <Select
@@ -421,7 +421,7 @@ const Inventory: React.FC = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={6} md={2}>
+            <Grid xs={6} md={2}>
               <Tooltip title="Refresh Data">
                 <IconButton
                   onClick={fetchProducts}
@@ -432,7 +432,7 @@ const Inventory: React.FC = () => {
                 </IconButton>
               </Tooltip>
             </Grid>
-            <Grid item xs={6} md={2}>
+            <Grid xs={6} md={2}>
               <Button
                 fullWidth
                 variant="outlined"
