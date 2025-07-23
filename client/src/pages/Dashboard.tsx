@@ -338,7 +338,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Recent Alerts */}
-        <Grid xs={12} md={6}>
+        <Grid item xs={12} md={6}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -383,7 +383,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Quick Actions */}
-        <Grid xs={12} md={6}>
+        <Grid item xs={12} md={6}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
