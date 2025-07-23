@@ -260,7 +260,7 @@ const Inventory: React.FC = () => {
 
       {/* Stats Cards */}
       <Grid container spacing={3} mb={3}>
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -286,7 +286,7 @@ const Inventory: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -312,7 +312,7 @@ const Inventory: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -338,7 +338,7 @@ const Inventory: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
