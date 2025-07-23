@@ -38,7 +38,7 @@ import {
   Cell,
 } from 'recharts';
 
-// Mock data - in real app this would come from API
+// Mock data
 const mockStats = {
   products: {
     totalProducts: 156,
@@ -98,7 +98,6 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({ title, value, subtitle, icon, color, trend, delay = 0 }) => {
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -186,7 +185,7 @@ const Dashboard: React.FC = () => {
         </Box>
         <Grid container spacing={3}>
           {[1, 2, 3, 4].map((i) => (
-            <Grid xs={12} sm={6} md={3} key={i}>
+            <Grid key={i} xs={12} sm={6} md={3}>
               <Card sx={{ height: 120 }}>
                 <CardContent>
                   <LinearProgress />
@@ -404,7 +403,7 @@ const Dashboard: React.FC = () => {
                     <strong>{mockStats.bills.paidBills}</strong> bills paid this month
                   </Alert>
                   <Alert severity="warning">
-                    <strong>{mockStats.products.lowStockProducts + mockStats.materials.lowStockMaterials}</strong> items
+                    <strong>{mockStats.products.lowStockProducts + mockStats.materials.lowStockMaterials}</strong> items 
                     need restocking
                   </Alert>
                 </Box>
