@@ -36,8 +36,6 @@ import {
   PieChart,
   Pie,
   Cell,
-  LineChart,
-  Line,
 } from 'recharts';
 
 // Mock data - in real app this would come from API
