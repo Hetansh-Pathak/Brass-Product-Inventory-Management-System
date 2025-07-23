@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Box,
+  Grid,
   Card,
   CardContent,
   Typography,
@@ -13,7 +14,6 @@ import {
   ListItemText,
   ListItemIcon,
 } from '@mui/material';
-import Grid from '@mui/material/Grid2';
 import {
   TrendingUp,
   Inventory,
