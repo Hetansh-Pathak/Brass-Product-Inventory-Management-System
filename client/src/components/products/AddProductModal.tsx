@@ -279,7 +279,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               </Typography>
             </Grid>
             
-            <Grid item xs={6} sm={3}>
+            <Grid xs={6} sm={3}>
               <Controller
                 name="specifications.dimensions.length"
                 control={control}
@@ -295,7 +295,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={6} sm={3}>
+            <Grid xs={6} sm={3}>
               <Controller
                 name="specifications.dimensions.width"
                 control={control}
@@ -311,7 +311,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={6} sm={3}>
+            <Grid xs={6} sm={3}>
               <Controller
                 name="specifications.dimensions.diameter"
                 control={control}
@@ -327,7 +327,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={6} sm={3}>
+            <Grid xs={6} sm={3}>
               <Controller
                 name="specifications.dimensions.unit"
                 control={control}
