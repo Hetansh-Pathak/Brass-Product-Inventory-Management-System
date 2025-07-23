@@ -60,11 +60,6 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const theme = useTheme();
 
-  // If already authenticated, redirect to dashboard
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
   const loginForm = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema),
     defaultValues: {
@@ -81,6 +76,11 @@ const Login: React.FC = () => {
       password: '',
     },
   });
+
+  // If already authenticated, redirect to dashboard
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
