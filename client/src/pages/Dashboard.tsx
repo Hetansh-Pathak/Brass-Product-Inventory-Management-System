@@ -98,7 +98,6 @@ interface StatCardProps {
 }
 
 const StatCard: React.FC<StatCardProps> = ({ title, value, subtitle, icon, color, trend, delay = 0 }) => {
-  const theme = useTheme();
 
   return (
     <motion.div
