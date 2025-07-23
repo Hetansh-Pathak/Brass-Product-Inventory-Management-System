@@ -325,7 +325,7 @@ const RawMaterials: React.FC = () => {
 
       {/* Stats Cards */}
       <Grid container spacing={3} mb={3}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -351,7 +351,7 @@ const RawMaterials: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -377,7 +377,7 @@ const RawMaterials: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -403,7 +403,7 @@ const RawMaterials: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -452,7 +452,7 @@ const RawMaterials: React.FC = () => {
         <Card sx={{ mb: 3 }}>
           <CardContent>
             <Grid container spacing={2} alignItems="center">
-              <Grid item xs={12} md={4}>
+              <Grid xs={12} md={4}>
                 <TextField
                   fullWidth
                   placeholder="Search materials..."
@@ -467,7 +467,7 @@ const RawMaterials: React.FC = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} md={3}>
+              <Grid xs={12} md={3}>
                 <FormControl fullWidth>
                   <InputLabel>Type</InputLabel>
                   <Select
@@ -484,7 +484,7 @@ const RawMaterials: React.FC = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} md={3}>
+              <Grid xs={12} md={3}>
                 <FormControl fullWidth>
                   <InputLabel>Status</InputLabel>
                   <Select
@@ -500,7 +500,7 @@ const RawMaterials: React.FC = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={12} md={2}>
+              <Grid xs={12} md={2}>
                 <Button
                   fullWidth
                   variant="outlined"
@@ -660,7 +660,7 @@ const RawMaterials: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogContent>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
+              <Grid xs={12} md={6}>
                 <Controller
                   name="materialName"
                   control={control}
@@ -676,7 +676,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid xs={12} md={6}>
                 <Controller
                   name="type"
                   control={control}
@@ -694,7 +694,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid xs={12} md={6}>
                 <Controller
                   name="grade"
                   control={control}
@@ -708,7 +708,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid xs={12} md={6}>
                 <Controller
                   name="supplierName"
                   control={control}
@@ -724,7 +724,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <Controller
                   name="supplierContact"
                   control={control}
@@ -740,14 +740,14 @@ const RawMaterials: React.FC = () => {
               </Grid>
 
               {/* Composition Section */}
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <Accordion>
                   <AccordionSummary expandIcon={<ExpandMore />}>
                     <Typography variant="h6">Material Composition</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Grid container spacing={2}>
-                      <Grid item xs={12} md={6}>
+                      <Grid xs={12} md={6}>
                         <Controller
                           name="purity"
                           control={control}
@@ -763,7 +763,7 @@ const RawMaterials: React.FC = () => {
                           )}
                         />
                       </Grid>
-                      <Grid item xs={12} md={6}>
+                      <Grid xs={12} md={6}>
                         <Controller
                           name="copper"
                           control={control}
@@ -779,7 +779,7 @@ const RawMaterials: React.FC = () => {
                           )}
                         />
                       </Grid>
-                      <Grid item xs={12} md={6}>
+                      <Grid xs={12} md={6}>
                         <Controller
                           name="zinc"
                           control={control}
@@ -795,7 +795,7 @@ const RawMaterials: React.FC = () => {
                           )}
                         />
                       </Grid>
-                      <Grid item xs={12} md={6}>
+                      <Grid xs={12} md={6}>
                         <Controller
                           name="tin"
                           control={control}
@@ -811,7 +811,7 @@ const RawMaterials: React.FC = () => {
                           )}
                         />
                       </Grid>
-                      <Grid item xs={12} md={6}>
+                      <Grid xs={12} md={6}>
                         <Controller
                           name="lead"
                           control={control}
@@ -832,7 +832,7 @@ const RawMaterials: React.FC = () => {
                 </Accordion>
               </Grid>
 
-              <Grid item xs={12} md={4}>
+              <Grid xs={12} md={4}>
                 <Controller
                   name="quantity"
                   control={control}
@@ -849,7 +849,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid xs={12} md={4}>
                 <Controller
                   name="unit"
                   control={control}
@@ -867,7 +867,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid xs={12} md={4}>
                 <Controller
                   name="reorderLevel"
                   control={control}
@@ -884,7 +884,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <Controller
                   name="costPrice"
                   control={control}
