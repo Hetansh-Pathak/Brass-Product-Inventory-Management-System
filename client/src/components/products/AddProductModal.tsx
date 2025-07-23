@@ -199,7 +199,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
       case 0:
         return (
           <Grid container spacing={3}>
-            <Grid size={12}>
+            <Grid item xs={12}>
               <Controller
                 name="productName"
                 control={control}
@@ -250,7 +250,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid size={12}>
+            <Grid item xs={12}>
               <Controller
                 name="description"
                 control={control}
@@ -273,7 +273,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
       case 1:
         return (
           <Grid container spacing={3}>
-            <Grid size={12}>
+            <Grid item xs={12}>
               <Typography variant="h6" gutterBottom>
                 Dimensions
               </Typography>
@@ -344,7 +344,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid size={12}>
+            <Grid item xs={12}>
               <Divider />
             </Grid>
             
@@ -451,7 +451,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid size={12}>
+            <Grid item xs={12}>
               <Typography variant="h6" gutterBottom>
                 Storage Location
               </Typography>
@@ -550,7 +550,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
             </Grid>
             
             {costPrice > 0 && sellingPrice > 0 && (
-              <Grid size={12}>
+              <Grid item xs={12}>
                 <Alert 
                   severity={profitMargin > 20 ? 'success' : profitMargin > 10 ? 'warning' : 'error'}
                   sx={{ mt: 1 }}
@@ -564,11 +564,11 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               </Grid>
             )}
             
-            <Grid size={12}>
+            <Grid item xs={12}>
               <Divider sx={{ my: 2 }} />
             </Grid>
             
-            <Grid size={12}>
+            <Grid item xs={12}>
               <Controller
                 name="supplier.name"
                 control={control}
@@ -616,7 +616,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid size={12}>
+            <Grid item xs={12}>
               <Controller
                 name="notes"
                 control={control}
