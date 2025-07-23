@@ -185,7 +185,7 @@ const Dashboard: React.FC = () => {
         </Box>
         <Grid container spacing={3}>
           {[1, 2, 3, 4].map((i) => (
-            <Grid item key={i} xs={12} sm={6} md={3}>
+            <Grid key={i} xs={12} sm={6} md={3}>
               <Card sx={{ height: 120 }}>
                 <CardContent>
                   <LinearProgress />
@@ -226,7 +226,7 @@ const Dashboard: React.FC = () => {
 
       {/* Stats Cards */}
       <Grid container spacing={3} mb={4}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <StatCard
             title="Total Products"
             value={mockStats.products.totalProducts}
@@ -237,7 +237,7 @@ const Dashboard: React.FC = () => {
             delay={0.1}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <StatCard
             title="Total Revenue"
             value={`$${(mockStats.bills.totalRevenue / 1000).toFixed(0)}K`}
@@ -248,7 +248,7 @@ const Dashboard: React.FC = () => {
             delay={0.2}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <StatCard
             title="Total Bills"
             value={mockStats.bills.totalBills}
@@ -259,7 +259,7 @@ const Dashboard: React.FC = () => {
             delay={0.3}
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid xs={12} sm={6} md={3}>
           <StatCard
             title="Raw Materials"
             value={mockStats.materials.totalMaterials}
@@ -274,7 +274,7 @@ const Dashboard: React.FC = () => {
 
       <Grid container spacing={3}>
         {/* Revenue Chart */}
-        <Grid item xs={12} md={8}>
+        <Grid xs={12} md={8}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -302,7 +302,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Category Distribution */}
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -338,7 +338,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Recent Alerts */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -383,7 +383,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Quick Actions */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
