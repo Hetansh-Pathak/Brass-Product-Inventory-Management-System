@@ -376,7 +376,7 @@ const Inventory: React.FC = () => {
       <Card sx={{ mb: 3 }}>
         <CardContent>
           <Grid container spacing={2} alignItems="center">
-            <Grid xs={12} md={4}>
+            <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
                 placeholder="Search products..."
