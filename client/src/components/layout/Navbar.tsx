@@ -22,7 +22,6 @@ import {
   Settings,
   DarkMode,
   LightMode,
-  Search,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useAuth } from '../../contexts/AuthContext';
