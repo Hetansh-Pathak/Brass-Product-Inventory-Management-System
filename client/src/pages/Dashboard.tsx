@@ -275,7 +275,7 @@ const Dashboard: React.FC = () => {
 
       <Grid container spacing={3}>
         {/* Revenue Chart */}
-        <Grid item xs={12} md={8}>
+        <Grid xs={12} md={8}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -303,7 +303,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Category Distribution */}
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -323,7 +323,7 @@ const Dashboard: React.FC = () => {
                         cy="50%"
                         outerRadius={80}
                         dataKey="value"
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                        label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
                       >
                         {categoryData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
@@ -339,7 +339,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Recent Alerts */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -367,14 +367,11 @@ const Dashboard: React.FC = () => {
                         <ListItemText
                           primary={alert.title}
                           secondary={
-                            <Box>
-                              <Typography variant="body2" color="text.secondary">
-                                {alert.message}
-                              </Typography>
-                              <Typography variant="caption" color="text.secondary">
-                                {alert.time}
-                              </Typography>
-                            </Box>
+                            <span>
+                              {alert.message}
+                              <br />
+                              <small>{alert.time}</small>
+                            </span>
                           }
                         />
                       </ListItem>
@@ -387,7 +384,7 @@ const Dashboard: React.FC = () => {
         </Grid>
 
         {/* Quick Actions */}
-        <Grid item xs={12} md={6}>
+        <Grid xs={12} md={6}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -407,7 +404,7 @@ const Dashboard: React.FC = () => {
                     <strong>{mockStats.bills.paidBills}</strong> bills paid this month
                   </Alert>
                   <Alert severity="warning">
-                    <strong>{mockStats.products.lowStockProducts + mockStats.materials.lowStockMaterials}</strong> items 
+                    <strong>{mockStats.products.lowStockProducts + mockStats.materials.lowStockMaterials}</strong> items
                     need restocking
                   </Alert>
                 </Box>
