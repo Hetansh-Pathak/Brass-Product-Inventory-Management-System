@@ -274,7 +274,7 @@ const Dashboard: React.FC = () => {
 
       <Grid container spacing={3}>
         {/* Revenue Chart */}
-        <Grid xs={12} md={8}>
+        <Grid item xs={12} md={8}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
