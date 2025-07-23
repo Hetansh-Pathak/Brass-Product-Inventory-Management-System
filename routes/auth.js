@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const User = require('../models/User');
 const { auth, authorize } = require('../middleware/auth');
+const { handleFallback } = require('../middleware/fallback');
 
 const router = express.Router();
 
@@ -45,6 +46,10 @@ const generateToken = (userId) => {
 // @access  Public (but can be restricted to admin in production)
 router.post('/register', async (req, res) => {
   try {
+    // Check for fallback mode first
+    const fallbackResult = handleFallback(req, res, 'register');
+    if (fallbackResult !== false) return;
+
     // Validate input
     const { error, value } = registerSchema.validate(req.body);
     if (error) {
@@ -103,6 +108,10 @@ router.post('/register', async (req, res) => {
 // @access  Public
 router.post('/login', async (req, res) => {
   try {
+    // Check for fallback mode first
+    const fallbackResult = handleFallback(req, res, 'login');
+    if (fallbackResult !== false) return;
+
     // Validate input
     const { error, value } = loginSchema.validate(req.body);
     if (error) {
