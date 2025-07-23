@@ -3,6 +3,7 @@ const Joi = require('joi');
 const Product = require('../models/Product');
 const Transaction = require('../models/Transaction');
 const { auth, authorize } = require('../middleware/auth');
+const { handleFallback } = require('../middleware/fallback');
 
 const router = express.Router();
 
@@ -68,6 +69,10 @@ const productSchema = Joi.object({
 // @access  Private
 router.get('/', auth, async (req, res) => {
   try {
+    // Check for fallback mode first
+    const fallbackResult = handleFallback(req, res, 'products');
+    if (fallbackResult !== false) return;
+
     const {
       page = 1,
       limit = 10,
@@ -80,7 +85,7 @@ router.get('/', auth, async (req, res) => {
 
     // Build query
     const query = {};
-    
+
     if (search) {
       query.$or = [
         { productName: { $regex: search, $options: 'i' } },
@@ -88,7 +93,7 @@ router.get('/', auth, async (req, res) => {
         { 'supplier.name': { $regex: search, $options: 'i' } }
       ];
     }
-    
+
     if (category) query.category = category;
     if (status) query.status = status;
 
