@@ -348,7 +348,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               <Divider />
             </Grid>
             
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="specifications.material"
                 control={control}
@@ -363,7 +363,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="specifications.grade"
                 control={control}
@@ -383,7 +383,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
       case 2:
         return (
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="inventory.quantity"
                 control={control}
@@ -401,7 +401,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="inventory.unit"
                 control={control}
@@ -418,7 +418,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="inventory.reorderLevel"
                 control={control}
@@ -436,7 +436,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="inventory.maxStockLevel"
                 control={control}
@@ -507,7 +507,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
       case 3:
         return (
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="pricing.costPrice"
                 control={control}
@@ -528,7 +528,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="pricing.sellingPrice"
                 control={control}
@@ -585,7 +585,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="supplier.contact.phone"
                 control={control}
@@ -599,7 +599,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
               />
             </Grid>
             
-            <Grid item xs={12} sm={6}>
+            <Grid xs={12} sm={6}>
               <Controller
                 name="supplier.contact.email"
                 control={control}
