@@ -452,7 +452,7 @@ const RawMaterials: React.FC = () => {
         <Card sx={{ mb: 3 }}>
           <CardContent>
             <Grid container spacing={2} alignItems="center">
-              <Grid xs={12} md={4}>
+              <Grid item xs={12} md={4}>
                 <TextField
                   fullWidth
                   placeholder="Search materials..."
@@ -832,7 +832,7 @@ const RawMaterials: React.FC = () => {
                 </Accordion>
               </Grid>
 
-              <Grid xs={12} md={4}>
+              <Grid item xs={12} md={4}>
                 <Controller
                   name="quantity"
                   control={control}
@@ -849,7 +849,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid xs={12} md={4}>
+              <Grid item xs={12} md={4}>
                 <Controller
                   name="unit"
                   control={control}
@@ -867,7 +867,7 @@ const RawMaterials: React.FC = () => {
                   )}
                 />
               </Grid>
-              <Grid xs={12} md={4}>
+              <Grid item xs={12} md={4}>
                 <Controller
                   name="reorderLevel"
                   control={control}
