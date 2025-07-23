@@ -46,7 +46,6 @@ import {
   // Sort,
   Refresh,
 } from '@mui/icons-material';
-import Grid from '@mui/material/Grid2';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import AddProductModal from '../components/products/AddProductModal';
