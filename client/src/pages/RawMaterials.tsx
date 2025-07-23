@@ -46,6 +46,7 @@ import {
   ExpandMore,
   Science,
 } from '@mui/icons-material';
+import Grid from '@mui/material/Grid2';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
