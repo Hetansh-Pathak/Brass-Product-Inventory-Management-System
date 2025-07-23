@@ -185,7 +185,7 @@ const Dashboard: React.FC = () => {
         </Box>
         <Grid container spacing={3}>
           {[1, 2, 3, 4].map((i) => (
-            <Grid key={i} xs={12} sm={6} md={3}>
+            <Grid item key={i} xs={12} sm={6} md={3}>
               <Card sx={{ height: 120 }}>
                 <CardContent>
                   <LinearProgress />
