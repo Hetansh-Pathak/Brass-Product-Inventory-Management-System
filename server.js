@@ -18,6 +18,9 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
+// Import middleware
+const { fallbackMiddleware } = require('./middleware/fallback');
+
 // Middleware
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:3000',
@@ -25,6 +28,9 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Apply fallback middleware for development
+app.use(fallbackMiddleware);
 
 // MongoDB connection with fallback
 const connectDB = async () => {
