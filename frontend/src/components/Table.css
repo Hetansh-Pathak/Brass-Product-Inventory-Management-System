@@ -1,0 +1,83 @@
+.table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+}
+
+body.dark-mode .table-container {
+  background-color: var(--gray-50);
+  border-color: var(--gray-200);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table thead {
+  background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+  border-bottom: 2px solid var(--border-color);
+}
+
+body.dark-mode .data-table thead {
+  background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+}
+
+.data-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.dark-mode .data-table th {
+  color: var(--gray-600);
+}
+
+.data-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.data-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--gray-50);
+}
+
+body.dark-mode .data-table tbody tr:hover {
+  background-color: var(--gray-100);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.empty-state {
+  padding: 3rem;
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .data-table {
+    font-size: 0.85rem;
+  }
+
+  .data-table th,
+  .data-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}
