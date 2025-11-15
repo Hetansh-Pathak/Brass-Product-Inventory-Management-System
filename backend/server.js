@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -15,10 +16,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/brass-inv
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('MongoDB connected'))
+.then(() => console.log('✓ MongoDB connected'))
 .catch(err => console.log('MongoDB connection error:', err));
 
-// Routes
+// API Routes
 app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/inventory', require('./routes/inventoryRoutes'));
 app.use('/api/purchases', require('./routes/purchaseRoutes'));
@@ -33,7 +34,17 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'Server running' });
 });
 
+// Serve frontend static files (after building)
+const frontendPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendPath));
+
+// Fallback to index.html for client-side routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✓ Server running on http://localhost:${PORT}`);
+  console.log('✓ API available at http://localhost:' + PORT + '/api');
 });
