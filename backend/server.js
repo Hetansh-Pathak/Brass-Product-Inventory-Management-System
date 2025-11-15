@@ -12,12 +12,16 @@ app.use(express.json());
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/brass-inventory', {
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/brass-inventory';
+mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('✓ MongoDB connected'))
-.catch(err => console.log('MongoDB connection error:', err));
+.catch(err => {
+  console.log('⚠ MongoDB not available. Some features may not work.');
+  console.log('To use the system with a database, provide MONGODB_URI environment variable.');
+});
 
 // API Routes
 app.use('/api/products', require('./routes/productRoutes'));
