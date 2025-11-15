@@ -36,17 +36,15 @@ app.get('/api/health', (req, res) => {
 
 // Serve frontend static files (after building)
 const frontendPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(frontendPath, {
-  fallthrough: false,
-  extensions: ['html', 'js', 'css']
-}));
+app.use(express.static(frontendPath));
 
-// Fallback to index.html for client-side routing
-app.use((err, req, res, next) => {
-  if (err.status === 404 || err.statusCode === 404) {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-  } else {
-    next(err);
+// Fallback to index.html for client-side routing (must be after all API routes)
+app.get('*', (req, res) => {
+  const indexPath = path.join(frontendPath, 'index.html');
+  try {
+    res.sendFile(indexPath);
+  } catch (err) {
+    res.status(404).json({ error: 'Frontend not built. Run: npm run build' });
   }
 });
 
