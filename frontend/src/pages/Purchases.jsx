@@ -5,7 +5,7 @@ import Table from '../components/Table'
 import './ListPage.css'
 
 function Purchases() {
-  const [purchases, setP urchases] = useState([])
+  const [purchases, setPurchases] = useState([])
   const [filteredPurchases, setFilteredPurchases] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [loading, setLoading] = useState(false)
