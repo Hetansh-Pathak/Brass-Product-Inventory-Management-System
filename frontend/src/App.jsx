@@ -27,18 +27,20 @@ function App() {
   return (
     <Router>
       <div className="app-container">
-        <Sidebar open={sidebarOpen} darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Sidebar open={sidebarOpen} darkMode={darkMode} setDarkMode={setDarkMode} onToggle={setSidebarOpen} />
         <div className={`main-content ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/inventory" element={<Inventory />} />
-            <Route path="/purchases" element={<Purchases />} />
-            <Route path="/invoices" element={<Invoices />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/suppliers" element={<Suppliers />} />
-            <Route path="/reports" element={<Reports />} />
-          </Routes>
+          <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/inventory" element={<Inventory />} />
+              <Route path="/purchases" element={<Purchases />} />
+              <Route path="/invoices" element={<Invoices />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/suppliers" element={<Suppliers />} />
+              <Route path="/reports" element={<Reports />} />
+            </Routes>
+          </div>
         </div>
       </div>
     </Router>
