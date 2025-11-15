@@ -36,11 +36,18 @@ app.get('/api/health', (req, res) => {
 
 // Serve frontend static files (after building)
 const frontendPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(frontendPath));
+app.use(express.static(frontendPath, {
+  fallthrough: false,
+  extensions: ['html', 'js', 'css']
+}));
 
 // Fallback to index.html for client-side routing
-app.get('*', (req, res) => {
-  res.sendFile(path.join(frontendPath, 'index.html'));
+app.use((err, req, res, next) => {
+  if (err.status === 404 || err.statusCode === 404) {
+    res.sendFile(path.join(frontendPath, 'index.html'));
+  } else {
+    next(err);
+  }
 });
 
 const PORT = process.env.PORT || 5000;
