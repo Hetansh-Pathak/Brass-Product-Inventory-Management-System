@@ -8,14 +8,32 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 1000;
+  z-index: 1001;
   box-shadow: var(--shadow-lg);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, left 0.3s ease;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .sidebar.closed {
-  transform: translateX(-100%);
+  transform: translateX(-260px);
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .sidebar-header {
