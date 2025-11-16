@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Plus, Edit2, Trash2, Search } from 'lucide-react'
 import ProductForm from '../components/ProductForm'
 import Table from '../components/Table'
+import DataStorage from '../services/DataStorage'
 import './ProductsPage.css'
 
 function Products() {
@@ -11,10 +11,9 @@ function Products() {
   const [searchTerm, setSearchTerm] = useState('')
   const [showForm, setShowForm] = useState(false)
   const [editingProduct, setEditingProduct] = useState(null)
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetchProducts()
+    loadProducts()
   }, [])
 
   useEffect(() => {
@@ -25,50 +24,25 @@ function Products() {
     setFilteredProducts(filtered)
   }, [products, searchTerm])
 
-  const fetchProducts = async () => {
-    try {
-      setLoading(true)
-      const response = await axios.get('/api/products')
-      setProducts(response.data)
-    } catch (error) {
-      console.error('Error fetching products:', error)
-      // Use mock data if API fails
-      setProducts([
-        { _id: '1', name: 'Brass Rod 10mm', sku: 'BR-10', category: 'Raw Material', uom: 'KG', purchasePrice: 450, sellingPrice: 550, currentStock: 100, gstPercent: 18 },
-        { _id: '2', name: 'Brass Sheet 5mm', sku: 'BS-05', category: 'Raw Material', uom: 'KG', purchasePrice: 500, sellingPrice: 600, currentStock: 50, gstPercent: 18 },
-        { _id: '3', name: 'Brass Fitting', sku: 'BF-01', category: 'Components', uom: 'PCS', purchasePrice: 80, sellingPrice: 120, currentStock: 200, gstPercent: 18 }
-      ])
-    } finally {
-      setLoading(false)
-    }
+  const loadProducts = () => {
+    setProducts(DataStorage.getProducts())
   }
 
-  const handleAddProduct = async (productData) => {
-    try {
-      if (editingProduct) {
-        await axios.put(`/api/products/${editingProduct._id}`, productData)
-      } else {
-        await axios.post('/api/products', productData)
-      }
-      fetchProducts()
-      setShowForm(false)
-      setEditingProduct(null)
-    } catch (error) {
-      console.error('Error saving product:', error)
-      alert('Error saving product')
+  const handleAddProduct = (productData) => {
+    if (editingProduct) {
+      DataStorage.updateProduct(editingProduct._id, productData)
+    } else {
+      DataStorage.addProduct(productData)
     }
+    loadProducts()
+    setShowForm(false)
+    setEditingProduct(null)
   }
 
-  const handleDeleteProduct = async (id) => {
+  const handleDeleteProduct = (id) => {
     if (!window.confirm('Are you sure you want to delete this product?')) return
-
-    try {
-      await axios.delete(`/api/products/${id}`)
-      fetchProducts()
-    } catch (error) {
-      console.error('Error deleting product:', error)
-      alert('Error deleting product')
-    }
+    DataStorage.deleteProduct(id)
+    loadProducts()
   }
 
   const columns = [
