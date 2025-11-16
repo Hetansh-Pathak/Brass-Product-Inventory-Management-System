@@ -21,13 +21,6 @@ function Sidebar({ open, darkMode, setDarkMode }) {
 
   return (
     <aside className={`sidebar ${open ? 'open' : 'closed'}`}>
-      <div className="sidebar-header">
-        <div className="logo">
-          <div className="logo-icon">Bi</div>
-          <span className="logo-text">Brass Inventory</span>
-        </div>
-      </div>
-
       <nav className="sidebar-nav">
         {menuItems.map(item => {
           const IconComponent = item.icon
@@ -44,17 +37,6 @@ function Sidebar({ open, darkMode, setDarkMode }) {
           )
         })}
       </nav>
-
-      <div className="sidebar-footer">
-        <button
-          className="theme-toggle"
-          onClick={() => setDarkMode(!darkMode)}
-          title={darkMode ? 'Light mode' : 'Dark mode'}
-        >
-          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-          <span>{darkMode ? 'Light' : 'Dark'}</span>
-        </button>
-      </div>
     </aside>
   )
 }
