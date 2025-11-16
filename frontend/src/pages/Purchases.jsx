@@ -1,51 +1,34 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Plus, Eye, Trash2, Search } from 'lucide-react'
 import Table from '../components/Table'
+import DataStorage from '../services/DataStorage'
 import './ListPage.css'
 
 function Purchases() {
   const [purchases, setPurchases] = useState([])
   const [filteredPurchases, setFilteredPurchases] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetchPurchases()
+    loadPurchases()
   }, [])
 
   useEffect(() => {
     const filtered = purchases.filter(p =>
-      p.billNo.toLowerCase().includes(searchTerm.toLowerCase())
+      (p.billNo || '').toLowerCase().includes(searchTerm.toLowerCase())
     )
     setFilteredPurchases(filtered)
   }, [purchases, searchTerm])
 
-  const fetchPurchases = async () => {
-    try {
-      setLoading(true)
-      const response = await axios.get('/api/purchases')
-      setPurchases(response.data)
-    } catch (error) {
-      console.error('Error fetching purchases:', error)
-      // Use mock data if API fails
-      setPurchases([
-        { _id: '1', billNo: 'PO-001', supplierId: { name: 'Supplier A' }, date: new Date().toISOString(), totalAmount: 50000, paymentStatus: 'Paid' },
-        { _id: '2', billNo: 'PO-002', supplierId: { name: 'Supplier B' }, date: new Date().toISOString(), totalAmount: 75000, paymentStatus: 'Unpaid' }
-      ])
-    } finally {
-      setLoading(false)
-    }
+  const loadPurchases = () => {
+    const data = DataStorage.getPurchases()
+    setPurchases(data)
   }
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     if (!window.confirm('Are you sure?')) return
-    try {
-      await axios.delete(`/api/purchases/${id}`)
-      fetchPurchases()
-    } catch (error) {
-      alert('Error deleting purchase')
-    }
+    DataStorage.deletePurchase(id)
+    loadPurchases()
   }
 
   const columns = [
