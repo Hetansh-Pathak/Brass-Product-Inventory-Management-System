@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Plus, AlertCircle, TrendingDown } from 'lucide-react'
 import Table from '../components/Table'
 import StockModal from '../components/StockModal'
+import DataStorage from '../services/DataStorage'
 import './ListPage.css'
 
 function Inventory() {
@@ -11,51 +11,50 @@ function Inventory() {
   const [lowStockItems, setLowStockItems] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [modalType, setModalType] = useState('in')
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetchData()
+    loadData()
   }, [])
 
-  const fetchData = async () => {
-    try {
-      setLoading(true)
-      const [stockRes, lowStockRes] = await Promise.all([
-        axios.get('/api/inventory/stock-report'),
-        axios.get('/api/inventory/low-stock')
-      ])
-      setInventory(stockRes.data)
-      setFilteredInventory(stockRes.data)
-      setLowStockItems(lowStockRes.data)
-    } catch (error) {
-      console.error('Error fetching inventory:', error)
-      // Use mock data if API fails
-      const mockInventory = [
-        { _id: '1', name: 'Brass Rod 10mm', sku: 'BR-10', category: 'Raw Material', currentStock: 100, minStockLevel: 20, purchasePrice: 450, sellingPrice: 550, stockValue: 45000, status: 'In Stock' },
-        { _id: '2', name: 'Brass Sheet 5mm', sku: 'BS-05', category: 'Raw Material', currentStock: 5, minStockLevel: 30, purchasePrice: 500, sellingPrice: 600, stockValue: 2500, status: 'Low Stock' },
-        { _id: '3', name: 'Brass Fitting', sku: 'BF-01', category: 'Components', currentStock: 200, minStockLevel: 50, purchasePrice: 80, sellingPrice: 120, stockValue: 16000, status: 'In Stock' }
-      ]
-      setInventory(mockInventory)
-      setFilteredInventory(mockInventory)
-      setLowStockItems(mockInventory.filter(i => i.currentStock <= i.minStockLevel))
-    } finally {
-      setLoading(false)
-    }
+  const loadData = () => {
+    const products = DataStorage.getProducts()
+    const report = products.map(p => ({
+      _id: p._id,
+      name: p.name,
+      sku: p.sku,
+      category: p.category,
+      currentStock: p.currentStock,
+      minStockLevel: p.minStockLevel,
+      purchasePrice: p.purchasePrice,
+      sellingPrice: p.sellingPrice,
+      stockValue: p.currentStock * p.purchasePrice,
+      status: p.currentStock <= p.minStockLevel ? 'Low Stock' : 'In Stock'
+    }))
+    setInventory(report)
+    setFilteredInventory(report)
+    setLowStockItems(report.filter(i => i.currentStock <= i.minStockLevel))
   }
 
-  const handleStockUpdate = async (data) => {
-    try {
-      if (modalType === 'in') {
-        await axios.post('/api/inventory/stock-in', data)
-      } else {
-        await axios.post('/api/inventory/stock-out', data)
-      }
-      fetchData()
-      setShowModal(false)
-    } catch (error) {
-      console.error('Error updating stock:', error)
-      alert('Error updating stock')
+  const handleStockUpdate = (data) => {
+    const product = DataStorage.getProducts().find(p => p._id === data.productId)
+    if (!product) {
+      alert('Product not found')
+      return
     }
+
+    if (modalType === 'in') {
+      product.currentStock += data.quantity
+    } else {
+      if (product.currentStock < data.quantity) {
+        alert('Insufficient stock')
+        return
+      }
+      product.currentStock -= data.quantity
+    }
+
+    DataStorage.updateProduct(product._id, { currentStock: product.currentStock })
+    loadData()
+    setShowModal(false)
   }
 
   const columns = [
