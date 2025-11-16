@@ -76,18 +76,23 @@ router.get('/recent', async (req, res) => {
       .populate('customerId')
       .sort({ date: -1 })
       .limit(5);
-    
+
     const recentPurchases = await Purchase.find()
       .populate('supplierId')
       .sort({ date: -1 })
       .limit(5);
-    
+
     res.json({
       recentInvoices,
       recentPurchases
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    // Return empty arrays if database is unavailable
+    console.log('Database error, returning empty data:', error.message);
+    res.json({
+      recentInvoices: [],
+      recentPurchases: []
+    });
   }
 });
 
