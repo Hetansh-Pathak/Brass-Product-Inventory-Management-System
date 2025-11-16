@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
+import TopHeader from './components/TopHeader'
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
 import Inventory from './pages/Inventory'
@@ -26,10 +27,11 @@ function App() {
 
   return (
     <Router>
-      <div className="app-container">
-        <Sidebar open={sidebarOpen} darkMode={darkMode} setDarkMode={setDarkMode} onToggle={setSidebarOpen} />
-        <div className={`main-content ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
-          <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div className="app-wrapper">
+        <TopHeader sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} darkMode={darkMode} setDarkMode={setDarkMode} />
+        <div className="app-container">
+          <Sidebar open={sidebarOpen} darkMode={darkMode} setDarkMode={setDarkMode} />
+          <div className={`main-content ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
